@@ -3,15 +3,18 @@ window.addEventListener('load', () => {
     const inputTask = document.querySelector('#input-task')
     const taskList = document.querySelector('#tasks')
     const createBtn = document.querySelector('#create')
+    const cancel = document.querySelector('#cancel')
 
     createBtn.addEventListener('click', () => {
-        console.log(form.style.display);
-        if(form.style.display == "none"){
-            form.style.display = "block"
+        if (form.className == "hide"){
+            form.classList.remove("hide")
         }
-        else{
-            form.style.display = "none"
-        }
+        inputTask.focus()
+    })
+
+    cancel.addEventListener('click', () => {
+        form.classList.add("hide")
+        inputTask.value = ""
     })
 
     form.addEventListener('submit', (event) => {
@@ -30,6 +33,9 @@ window.addEventListener('load', () => {
 
         task.appendChild(task_content)
 
-        taskList.appendChild(task)
+        taskList.prepend(task)
+
+        inputTask.value = ""
+        form.classList.add("hide")
     })
 })
