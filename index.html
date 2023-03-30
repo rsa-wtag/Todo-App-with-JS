@@ -15,7 +15,24 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    
+    <h1>Add Tasks</h1>
+
+    <button id="create">+ Create</button>
+
+    <form id="create-task" class="create-task" style="display:none;">
+        <input 
+            type="text"
+            id="input-task"
+            placeholder="Create your task">
+        <input 
+            type="submit"
+            id="add-task"
+            value="Add Task">
+    </form>
+
+    <div id="tasks">
+    </div>
+
     <!-- js -->
     <script src="./assets/js/main.js"></script>
 </body>
