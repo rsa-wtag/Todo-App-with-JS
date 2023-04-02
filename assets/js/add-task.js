@@ -37,6 +37,7 @@ window.addEventListener("load", () => {
       .replace(/\//g, ".");
 
     const input_element = document.createElement("input");
+    input_element.classList.add("text");
     input_element.type = "text";
     input_element.value = inputTask.value;
     input_element.setAttribute("readonly", "readonly");
@@ -44,14 +45,26 @@ window.addEventListener("load", () => {
     task_content.appendChild(input_element);
 
     const tools = document.createElement("div");
+    input_element.classList.add("actions");
 
-    tools.innerHTML +=
-      "Created At: " +
-      formattedDate +
-      "<br>" +
-      `<img src="./assets/images/check.png" alt="Done button" id="done" />` +
-      `<img src="./assets/images/pen.png" alt="Edit button" id="edit" />` +
-      `<img src="./assets/images/trash.png" alt="Delete button" id="delete" /><br><br>`;
+    const date = document.createElement("p");
+    date.innerHTML = "Created At: " + formattedDate;
+    const done = document.createElement("button");
+    done.classList.add("done");
+    done.innerHTML = `<img src="./assets/images/check.png" alt="Done button" id="done" />`;
+
+    const edit = document.createElement("button");
+    edit.classList.add("edit");
+    edit.innerHTML = `<img src="./assets/images/pen.png" alt="Edit button" id="edit" />`;
+
+    const dlt = document.createElement("button");
+    dlt.classList.add("delete");
+    dlt.innerHTML = `<img src="./assets/images/trash.png" alt="Delete button" id="delete" />`;
+
+    tools.appendChild(date);
+    tools.appendChild(done);
+    tools.appendChild(edit);
+    tools.appendChild(dlt);
 
     task_content.appendChild(tools);
 
