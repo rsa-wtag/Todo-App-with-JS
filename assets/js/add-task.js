@@ -74,5 +74,9 @@ window.addEventListener("load", () => {
 
     inputTask.value = "";
     form.classList.add("hide");
+
+    dlt.addEventListener("click", () => {
+      taskList.removeChild(task);
+    });
   });
 });
