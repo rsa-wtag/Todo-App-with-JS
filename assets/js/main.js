@@ -29,7 +29,12 @@ window.addEventListener('load', () => {
 
         const task_content =document.createElement('div')
         task_content.classList.add("content")
-        task_content.innerText = inputTask.value
+
+        const currentDate = new Date();
+        const options = { day: '2-digit', month: '2-digit', year: '2-digit' };
+        const formattedDate = currentDate.toLocaleDateString('en-UK', options).replace(/\//g, '.');
+
+        task_content.innerText = inputTask.value + "\nCreated At: " +  formattedDate
 
         task.appendChild(task_content)
 
