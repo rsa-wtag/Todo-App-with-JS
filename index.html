@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- Title -->
-    <link rel = "icon" 
-        href = "./assets/images/leaf.png" 
-        type = "image/x-icon">
+    <link rel="icon" href="./assets/images/leaf.png" type="image/x-icon" />
     <title>Todos</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
     <h1>Add Tasks</h1>
 
     <button id="create">+ Create</button>
 
     <!-- Create Task -->
     <form id="create-task" class="hide">
-        <input type="text" id="input-task" placeholder="Create your task">
-        <input type="submit" id="add-task" value="Add Task">
-        <img src="./assets/images/Vector.png" alt="Cancel button" id="cancel">
+      <input type="text" id="input-task" placeholder="Create your task" />
+      <input type="submit" id="add-task" value="Add Task" />
+      <img src="./assets/images/Vector.png" alt="Cancel button" id="cancel" />
     </form>
 
     <!-- Task Lists -->
-    <div id="tasks">
-    </div>
+    <div id="tasks"></div>
 
     <!-- js -->
     <script src="./assets/js/main.js"></script>
-</body>
+  </body>
 </html>
