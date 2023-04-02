@@ -36,7 +36,24 @@ window.addEventListener("load", () => {
       .toLocaleDateString("en-UK", options)
       .replace(/\//g, ".");
 
-    task_content.innerText = inputTask.value + "\nCreated At: " + formattedDate;
+    const input_element = document.createElement("input");
+    input_element.type = "text";
+    input_element.value = inputTask.value;
+    input_element.setAttribute("readonly", "readonly");
+
+    task_content.appendChild(input_element);
+
+    const tools = document.createElement("div");
+
+    tools.innerHTML +=
+      "Created At: " +
+      formattedDate +
+      "<br>" +
+      `<img src="./assets/images/check.png" alt="Done button" id="done" />` +
+      `<img src="./assets/images/pen.png" alt="Edit button" id="edit" />` +
+      `<img src="./assets/images/trash.png" alt="Delete button" id="delete" /><br><br>`;
+
+    task_content.appendChild(tools);
 
     task.appendChild(task_content);
 
