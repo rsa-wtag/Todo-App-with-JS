@@ -1,3 +1,5 @@
+import deleteTaskEventListener from "./delete-task.js";
+
 window.addEventListener("load", () => {
   const form = document.querySelector("#create-task");
   const inputTask = document.querySelector("#input-task");
@@ -75,8 +77,6 @@ window.addEventListener("load", () => {
     inputTask.value = "";
     form.classList.add("hide");
 
-    dlt.addEventListener("click", () => {
-      taskList.removeChild(task);
-    });
+    deleteTaskEventListener(dlt, task);
   });
 });
