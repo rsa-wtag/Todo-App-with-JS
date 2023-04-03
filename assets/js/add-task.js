@@ -1,4 +1,5 @@
 import deleteTaskEventListener from "./delete-task.js";
+import doneTaskEventListener from "./done-task.js";
 
 window.addEventListener("load", () => {
   const form = document.querySelector("#create-task");
@@ -52,15 +53,12 @@ window.addEventListener("load", () => {
     const date = document.createElement("p");
     date.innerHTML = "Created At: " + formattedDate;
     const done = document.createElement("button");
-    done.classList.add("done");
     done.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
 
     const edit = document.createElement("button");
-    edit.classList.add("edit");
     edit.innerHTML = `<i class="fa-solid fa-pen" id="edit"></i>`;
 
     const dlt = document.createElement("button");
-    dlt.classList.add("delete");
     dlt.innerHTML = `<i class="fa-solid fa-trash-can" id="delete"></i>`;
 
     tools.appendChild(date);
@@ -78,5 +76,6 @@ window.addEventListener("load", () => {
     form.classList.add("hide");
 
     deleteTaskEventListener(dlt, task);
+    doneTaskEventListener(done, input_element);
   });
 });
