@@ -1,4 +1,4 @@
-const taskList = document.querySelector("#tasks")
+const taskList = document.querySelector("#task-list")
 
 function deleteTaskEventListener(dlt, task){
     dlt.addEventListener("click", () => {
