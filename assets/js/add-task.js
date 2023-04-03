@@ -1,6 +1,6 @@
 window.addEventListener("load", () => {
   const form = document.querySelector("#create-task");
-  const inputTask = document.querySelector("#input-task");
+  const inputValue = document.querySelector("#input-value");
   const taskList = document.querySelector("#tasks");
   const createBtn = document.querySelector("#create");
   const cancel = document.querySelector("#cancel");
@@ -9,18 +9,18 @@ window.addEventListener("load", () => {
     if (form.className == "hide") {
       form.classList.remove("hide");
     }
-    inputTask.focus();
+    inputValue.focus();
   });
 
   cancel.addEventListener("click", () => {
     form.classList.add("hide");
-    inputTask.value = "";
+    inputValue.value = "";
   });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    if (!inputTask.value) {
+    if (!inputValue.value) {
       return;
     }
 
@@ -39,7 +39,7 @@ window.addEventListener("load", () => {
     const input_element = document.createElement("input");
     input_element.classList.add("text");
     input_element.type = "text";
-    input_element.value = inputTask.value;
+    input_element.value = inputValue.value;
     input_element.setAttribute("readonly", "readonly");
 
     task_content.appendChild(input_element);
@@ -74,7 +74,7 @@ window.addEventListener("load", () => {
 
     taskList.prepend(task);
 
-    inputTask.value = "";
+    inputValue.value = "";
     form.classList.add("hide");
   });
 });
