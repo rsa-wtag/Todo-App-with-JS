@@ -22,14 +22,12 @@ window.addEventListener("load", () => {
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-
     if (!inputValue.value) {
       return;
     }
 
     const task = document.createElement("div");
     task.classList.add("task");
-
     const task_content = document.createElement("div");
     task_content.classList.add("content");
 
@@ -46,7 +44,6 @@ window.addEventListener("load", () => {
     input_element.setAttribute("readonly", "readonly");
 
     task_content.appendChild(input_element);
-
     const tools = document.createElement("div");
     tools.classList.add("actions");
 
@@ -67,15 +64,13 @@ window.addEventListener("load", () => {
     tools.appendChild(dlt);
 
     task_content.appendChild(tools);
-
     task.appendChild(task_content);
-
     taskList.prepend(task);
 
     inputValue.value = null;
     form.classList.add("hide");
 
     deleteTaskEventListener(dlt, task);
-    doneTaskEventListener(done, input_element);
+    doneTaskEventListener(done, edit, input_element, currentDate, tools);
   });
 });
