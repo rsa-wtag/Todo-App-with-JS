@@ -1,18 +1,18 @@
 window.addEventListener("load", () => {
   const form = document.querySelector("#create-task");
   const inputValue = document.querySelector("#input-value");
-  const taskList = document.querySelector("#tasks");
-  const createBtn = document.querySelector("#create");
-  const cancel = document.querySelector("#cancel");
+  const taskList = document.querySelector("#task-list");
+  const createButton = document.querySelector("#create-button");
+  const cancelButton = document.querySelector("#cancel-button");
 
-  createBtn.addEventListener("click", () => {
+  createButton.addEventListener("click", () => {
     if (form.className == "hide") {
       form.classList.remove("hide");
     }
     inputValue.focus();
   });
 
-  cancel.addEventListener("click", () => {
+  cancelButton.addEventListener("click", () => {
     form.classList.add("hide");
     inputValue.value = "";
   });
@@ -45,7 +45,7 @@ window.addEventListener("load", () => {
     task_content.appendChild(input_element);
 
     const tools = document.createElement("div");
-    input_element.classList.add("actions");
+    tools.classList.add("actions");
 
     const date = document.createElement("p");
     date.innerHTML = "Created At: " + formattedDate;
@@ -55,12 +55,10 @@ window.addEventListener("load", () => {
 
     const edit = document.createElement("button");
     edit.classList.add("edit");
-    // edit.innerHTML = `<img src="./assets/images/pen.png" alt="Edit button" id="edit" />`;
     edit.innerHTML = `<i class="fa-solid fa-pen" id="edit"></i>`;
 
     const dlt = document.createElement("button");
     dlt.classList.add("delete");
-    // dlt.innerHTML = `<img src="./assets/images/trash.png" alt="Delete button" id="delete" />`;
     dlt.innerHTML = `<i class="fa-solid fa-trash-can" id="delete"></i>`;
 
     tools.appendChild(date);
@@ -74,7 +72,7 @@ window.addEventListener("load", () => {
 
     taskList.prepend(task);
 
-    inputValue.value = "";
+    inputValue.value = null;
     form.classList.add("hide");
   });
 });
