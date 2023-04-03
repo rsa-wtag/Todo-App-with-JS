@@ -2,27 +2,27 @@ import deleteTaskEventListener from "./delete-task.js";
 
 window.addEventListener("load", () => {
   const form = document.querySelector("#create-task");
-  const inputTask = document.querySelector("#input-task");
-  const taskList = document.querySelector("#tasks");
-  const createBtn = document.querySelector("#create");
-  const cancel = document.querySelector("#cancel");
+  const inputValue = document.querySelector("#input-value");
+  const taskList = document.querySelector("#task-list");
+  const createButton = document.querySelector("#create-button");
+  const cancelButton = document.querySelector("#cancel-button");
 
-  createBtn.addEventListener("click", () => {
+  createButton.addEventListener("click", () => {
     if (form.className == "hide") {
       form.classList.remove("hide");
     }
-    inputTask.focus();
+    inputValue.focus();
   });
 
-  cancel.addEventListener("click", () => {
+  cancelButton.addEventListener("click", () => {
     form.classList.add("hide");
-    inputTask.value = "";
+    inputValue.value = "";
   });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    if (!inputTask.value) {
+    if (!inputValue.value) {
       return;
     }
 
@@ -41,27 +41,27 @@ window.addEventListener("load", () => {
     const input_element = document.createElement("input");
     input_element.classList.add("text");
     input_element.type = "text";
-    input_element.value = inputTask.value;
+    input_element.value = inputValue.value;
     input_element.setAttribute("readonly", "readonly");
 
     task_content.appendChild(input_element);
 
     const tools = document.createElement("div");
-    input_element.classList.add("actions");
+    tools.classList.add("actions");
 
     const date = document.createElement("p");
     date.innerHTML = "Created At: " + formattedDate;
     const done = document.createElement("button");
     done.classList.add("done");
-    done.innerHTML = `<img src="./assets/images/check.png" alt="Done button" id="done" />`;
+    done.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
 
     const edit = document.createElement("button");
     edit.classList.add("edit");
-    edit.innerHTML = `<img src="./assets/images/pen.png" alt="Edit button" id="edit" />`;
+    edit.innerHTML = `<i class="fa-solid fa-pen" id="edit"></i>`;
 
     const dlt = document.createElement("button");
     dlt.classList.add("delete");
-    dlt.innerHTML = `<img src="./assets/images/trash.png" alt="Delete button" id="delete" />`;
+    dlt.innerHTML = `<i class="fa-solid fa-trash-can" id="delete"></i>`;
 
     tools.appendChild(date);
     tools.appendChild(done);
@@ -74,7 +74,7 @@ window.addEventListener("load", () => {
 
     taskList.prepend(task);
 
-    inputTask.value = "";
+    inputValue.value = null;
     form.classList.add("hide");
 
     deleteTaskEventListener(dlt, task);
