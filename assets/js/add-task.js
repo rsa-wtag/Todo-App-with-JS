@@ -1,5 +1,6 @@
 import deleteTaskEventListener from "./delete-task.js";
 import doneTaskEventListener from "./done-task.js";
+import editTaskEventListener from "./edit-task.js";
 
 window.addEventListener("load", () => {
   const form = document.querySelector("#create-task");
@@ -72,5 +73,6 @@ window.addEventListener("load", () => {
 
     deleteTaskEventListener(dlt, task);
     doneTaskEventListener(done, edit, input_element, currentDate, tools);
+    editTaskEventListener(edit, input_element, tools);
   });
 });

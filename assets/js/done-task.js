@@ -3,7 +3,6 @@ function doneTaskEventListener(done, edit, input_element, currentDate, tools) {
     input_element.classList.add("done");
 
     done.classList.add("hide");
-    console.log(edit);
     edit.classList.add("hide");
 
     const now = new Date();
