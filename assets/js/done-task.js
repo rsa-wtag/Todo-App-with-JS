@@ -2,9 +2,9 @@ function doneTaskEventListener(done, edit, input_element, currentDate, tools) {
   done.addEventListener("click", () => {
     input_element.classList.add("done");
 
-    done.classList.add("hide")
+    done.classList.add("hide");
     console.log(edit);
-    edit.classList.add("hide")
+    edit.classList.add("hide");
 
     const now = new Date();
     const diffTime = now.getTime() - currentDate.getTime();
@@ -15,13 +15,12 @@ function doneTaskEventListener(done, edit, input_element, currentDate, tools) {
     completeTime.innerText = `Completed in `;
 
     if (diffDays > 0) {
-        completeTime.innerText += diffDays.toString() + " days";
+      completeTime.innerText += diffDays.toString() + " days";
     } else {
-        completeTime.innerText += diffHours.toString() + " hours";
+      completeTime.innerText += diffHours.toString() + " hours";
     }
 
     tools.appendChild(completeTime);
-
   });
 }
 export default doneTaskEventListener;
