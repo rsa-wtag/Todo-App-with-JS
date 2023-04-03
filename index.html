@@ -11,17 +11,23 @@
 
     <!-- css -->
     <link rel="stylesheet" href="./assets/css/style.css" />
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/bf62453df6.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <h1>Add Tasks</h1>
 
-    <button id="create">+ Create</button>
+    <button id="create"><i class="fa-solid fa-plus"></i> Create</button>
 
     <!-- Create Task -->
     <form id="create-task" class="hide">
       <input type="text" id="input-task" placeholder="Create your task" />
       <input type="submit" id="add-task" value="Add Task" />
-      <img src="./assets/images/trash.png" alt="Cancel button" id="cancel" />
+      <i class="fa-solid fa-trash-can" id="cancel"></i>
     </form>
 
     <!-- Task Lists -->

@@ -51,15 +51,17 @@ window.addEventListener("load", () => {
     date.innerHTML = "Created At: " + formattedDate;
     const done = document.createElement("button");
     done.classList.add("done");
-    done.innerHTML = `<img src="./assets/images/check.png" alt="Done button" id="done" />`;
+    done.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
 
     const edit = document.createElement("button");
     edit.classList.add("edit");
-    edit.innerHTML = `<img src="./assets/images/pen.png" alt="Edit button" id="edit" />`;
+    // edit.innerHTML = `<img src="./assets/images/pen.png" alt="Edit button" id="edit" />`;
+    edit.innerHTML = `<i class="fa-solid fa-pen" id="edit"></i>`;
 
     const dlt = document.createElement("button");
     dlt.classList.add("delete");
-    dlt.innerHTML = `<img src="./assets/images/trash.png" alt="Delete button" id="delete" />`;
+    // dlt.innerHTML = `<img src="./assets/images/trash.png" alt="Delete button" id="delete" />`;
+    dlt.innerHTML = `<i class="fa-solid fa-trash-can" id="delete"></i>`;
 
     tools.appendChild(date);
     tools.appendChild(done);
