@@ -74,6 +74,6 @@ window.addEventListener("load", () => {
 
     deleteTaskEventListener(dlt, task, taskList);
     doneTaskEventListener(done, edit, input_element, currentDate, tools);
-    editTaskEventListener(done, edit, input_element, tools);
+    editTaskEventListener(dlt, done, edit, input_element, tools);
   });
 });
