@@ -1,6 +1,6 @@
-function deleteTaskEventListener(dlt, task, taskList){
-    dlt.addEventListener("click", () => {
-        taskList.removeChild(task);
-    })
+function deleteTaskEventListener(dlt, task, taskList) {
+  dlt.addEventListener("click", () => {
+    taskList.removeChild(task);
+  });
 }
-export default deleteTaskEventListener
+export default deleteTaskEventListener;
