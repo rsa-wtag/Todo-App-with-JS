@@ -37,11 +37,10 @@ window.addEventListener("load", () => {
       .toLocaleDateString("en-UK", options)
       .replace(/\//g, ".");
 
-    const input_element = document.createElement("input");
+    const input_element = document.createElement("p");
     input_element.classList.add("text");
-    input_element.type = "text";
-    input_element.value = inputValue.value;
-    input_element.setAttribute("readonly", "readonly");
+    input_element.innerText = inputValue.value;
+    input_element.contentEditable = false
 
     task_content.appendChild(input_element);
 
