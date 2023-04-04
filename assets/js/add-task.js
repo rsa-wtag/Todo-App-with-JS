@@ -51,6 +51,10 @@ window.addEventListener("load", () => {
     const date = document.createElement("p");
     date.innerHTML = "Created At: " + formattedDate;
 
+    const saveButton = document.createElement("button");
+    saveButton.innerText = "Save";
+    saveButton.classList.add("hide")
+
     const done = document.createElement("button");
     done.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
 
@@ -59,11 +63,17 @@ window.addEventListener("load", () => {
 
     const dlt = document.createElement("button");
     dlt.innerHTML = `<i class="fa-solid fa-trash-can" id="delete"></i>`;
+    
+    const revert = document.createElement("button");
+    revert.innerHTML = `<i class="fa-solid fa-trash-can" id="revert"></i>`;
+    revert.classList.add("hide")
 
     tools.appendChild(date);
+    tools.appendChild(saveButton);
     tools.appendChild(done);
     tools.appendChild(edit);
     tools.appendChild(dlt);
+    tools.appendChild(revert);
 
     task_content.appendChild(tools);
     task.appendChild(task_content);
@@ -74,6 +84,6 @@ window.addEventListener("load", () => {
 
     deleteTaskEventListener(dlt, task, taskList);
     doneTaskEventListener(done, edit, input_element, currentDate, tools);
-    editTaskEventListener(dlt, done, edit, input_element, tools);
+    editTaskEventListener(dlt, done, edit, revert, saveButton, input_element, tools);
   });
 });
