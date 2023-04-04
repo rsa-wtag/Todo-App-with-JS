@@ -12,7 +12,7 @@ function editTaskEventListener(edit, input_element, tools) {
     saveButton.addEventListener("click", () => {
       input_element.setAttribute("readonly", "readonly");
       edit.classList.remove("hide");
-      tools.removeChild(saveButton)
+      tools.removeChild(saveButton);
     });
   });
 }
