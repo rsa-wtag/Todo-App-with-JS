@@ -6,17 +6,18 @@ window.addEventListener("load", () => {
   const taskList = document.querySelector("#task-list");
   const createButton = document.querySelector("#create-button");
   const cancelButton = document.querySelector("#cancel-button");
+  const CLICK_EVENT = "click";
 
-  createButton.addEventListener("click", () => {
+  createButton.addEventListener(CLICK_EVENT, () => {
     if (form.className == "hide") {
       form.classList.remove("hide");
     }
     inputValue.focus();
   });
 
-  cancelButton.addEventListener("click", () => {
+  cancelButton.addEventListener(CLICK_EVENT, () => {
     form.classList.add("hide");
-    inputValue.value = "";
+    inputValue.value = null;
   });
 
   form.addEventListener("submit", (event) => {
@@ -38,11 +39,10 @@ window.addEventListener("load", () => {
       .toLocaleDateString("en-UK", options)
       .replace(/\//g, ".");
 
-    const input_element = document.createElement("input");
+    const input_element = document.createElement("p");
     input_element.classList.add("text");
-    input_element.type = "text";
-    input_element.value = inputValue.value;
-    input_element.setAttribute("readonly", "readonly");
+    input_element.innerText = inputValue.value;
+    input_element.contentEditable = false;
 
     task_content.appendChild(input_element);
 
@@ -51,6 +51,7 @@ window.addEventListener("load", () => {
 
     const date = document.createElement("p");
     date.innerHTML = "Created At: " + formattedDate;
+
     const done = document.createElement("button");
     done.classList.add("done");
     done.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
@@ -69,9 +70,7 @@ window.addEventListener("load", () => {
     tools.appendChild(dlt);
 
     task_content.appendChild(tools);
-
     task.appendChild(task_content);
-
     taskList.prepend(task);
 
     inputValue.value = null;
