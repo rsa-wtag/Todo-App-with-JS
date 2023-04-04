@@ -1,7 +1,6 @@
 function doneTaskEventListener(done, edit, input_element, currentDate, tools) {
   done.addEventListener("click", () => {
     input_element.classList.add("done");
-
     done.classList.add("hide");
     edit.classList.add("hide");
 

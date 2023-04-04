@@ -1,6 +1,6 @@
 function editTaskEventListener(edit, input_element, tools) {
   edit.addEventListener("click", () => {
-    input_element.removeAttribute("readonly");
+    input_element.contentEditable = true;
     input_element.focus();
     edit.classList.add("hide");
 

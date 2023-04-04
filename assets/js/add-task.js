@@ -1,6 +1,6 @@
-import deleteTaskEventListener from "./delete-task.js";
-import doneTaskEventListener from "./done-task.js";
-import editTaskEventListener from "./edit-task.js";
+import deleteTaskEventListener from "/assets/js/delete-task.js";
+import doneTaskEventListener from "/assets/js/done-task.js";
+import editTaskEventListener from "/assets/js/edit-task.js";
 
 window.addEventListener("load", () => {
   const form = document.querySelector("#create-task");
@@ -8,17 +8,18 @@ window.addEventListener("load", () => {
   const taskList = document.querySelector("#task-list");
   const createButton = document.querySelector("#create-button");
   const cancelButton = document.querySelector("#cancel-button");
+  const CLICK_EVENT = "click";
 
-  createButton.addEventListener("click", () => {
+  createButton.addEventListener(CLICK_EVENT, () => {
     if (form.className == "hide") {
       form.classList.remove("hide");
     }
     inputValue.focus();
   });
 
-  cancelButton.addEventListener("click", () => {
+  cancelButton.addEventListener(CLICK_EVENT, () => {
     form.classList.add("hide");
-    inputValue.value = "";
+    inputValue.value = null;
   });
 
   form.addEventListener("submit", (event) => {
@@ -38,11 +39,10 @@ window.addEventListener("load", () => {
       .toLocaleDateString("en-UK", options)
       .replace(/\//g, ".");
 
-    const input_element = document.createElement("input");
+    const input_element = document.createElement("p");
     input_element.classList.add("text");
-    input_element.type = "text";
-    input_element.value = inputValue.value;
-    input_element.setAttribute("readonly", "readonly");
+    input_element.innerText = inputValue.value;
+    input_element.contentEditable = false;
 
     task_content.appendChild(input_element);
     const tools = document.createElement("div");
@@ -50,6 +50,7 @@ window.addEventListener("load", () => {
 
     const date = document.createElement("p");
     date.innerHTML = "Created At: " + formattedDate;
+
     const done = document.createElement("button");
     done.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
 
@@ -71,7 +72,7 @@ window.addEventListener("load", () => {
     inputValue.value = null;
     form.classList.add("hide");
 
-    deleteTaskEventListener(dlt, task);
+    deleteTaskEventListener(dlt, task, taskList);
     doneTaskEventListener(done, edit, input_element, currentDate, tools);
     editTaskEventListener(done, edit, input_element, tools);
   });
