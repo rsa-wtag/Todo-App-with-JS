@@ -4,15 +4,16 @@ window.addEventListener("load", () => {
   const taskList = document.querySelector("#task-list");
   const createButton = document.querySelector("#create-button");
   const cancelButton = document.querySelector("#cancel-button");
+  const CLICK_EVENT = "click";
 
-  createButton.addEventListener("click", () => {
+  createButton.addEventListener(CLICK_EVENT, () => {
     if (form.className == "hide") {
       form.classList.remove("hide");
     }
     inputValue.focus();
   });
 
-  cancelButton.addEventListener("click", () => {
+  cancelButton.addEventListener(CLICK_EVENT, () => {
     form.classList.add("hide");
     inputValue.value = "";
   });
