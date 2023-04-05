@@ -1,6 +1,6 @@
 import { CLICK_EVENT } from "/assets/js/constants.js";
 
-function doneTask(done, edit, inputElement, tools, allTasks, id) {
+function doneTaskEvent(done, edit, inputElement, tools, allTasks, id) {
   done.addEventListener(CLICK_EVENT, () => {
     inputElement.classList.add("done");
     allTasks[id].done = true;
@@ -18,4 +18,4 @@ function doneTask(done, edit, inputElement, tools, allTasks, id) {
     tools.appendChild(completeTime);
   });
 }
-export default doneTask;
+export default doneTaskEvent;

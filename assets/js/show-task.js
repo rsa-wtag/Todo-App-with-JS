@@ -1,5 +1,5 @@
-import deleteTask from "/assets/js/delete-task.js";
-import doneTask from "/assets/js/done-task.js";
+import deleteTaskEvent from "/assets/js/delete-task.js";
+import doneTaskEvent from "/assets/js/done-task.js";
 
 function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   const task = document.createElement("div");
@@ -42,8 +42,8 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   task.appendChild(task_content);
   taskList.prepend(task);
 
-  deleteTask(dlt, task, taskList, allTasks, id);
-  doneTask(done, edit, inputElement, tools, allTasks, id);
+  deleteTaskEvent(dlt, task, taskList, allTasks, id);
+  doneTaskEvent(done, edit, inputElement, tools, allTasks, id);
 
   inputValue.value = null;
   form.classList.add("hide");
