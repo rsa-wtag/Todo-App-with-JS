@@ -1,13 +1,13 @@
 import { CLICK_EVENT } from "/assets/js/constants.js";
 
-function doneTaskEventListener(done, edit, input_element, currentDate, tools) {
+function doneTask(done, edit, input_element, tools, allTasks, id) {
   done.addEventListener(CLICK_EVENT, () => {
     input_element.classList.add("done");
     done.classList.add("hide");
     edit.classList.add("hide");
 
     const now = new Date();
-    const diffTime = now.getTime() - currentDate.getTime();
+    const diffTime = now.getTime() - allTasks[id].date.getTime();
     const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
     const diffDays = Math.floor(diffHours / 24);
 
@@ -23,4 +23,4 @@ function doneTaskEventListener(done, edit, input_element, currentDate, tools) {
     tools.appendChild(completeTime);
   });
 }
-export default doneTaskEventListener;
+export default doneTask;
