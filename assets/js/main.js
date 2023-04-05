@@ -1,4 +1,4 @@
-import addTask from "/assets/js/add-task.js";
+import addTaskEvent from "/assets/js/add-task.js";
 
 window.addEventListener("load", () => {
   const form = document.querySelector("#create-task");
@@ -9,5 +9,5 @@ window.addEventListener("load", () => {
   let allTasks = {};
   let id = 0;
 
-  addTask(createButton, cancelButton, form, inputValue, allTasks, id, taskList);
+  addTaskEvent(createButton, cancelButton, form, inputValue, allTasks, id, taskList);
 });
