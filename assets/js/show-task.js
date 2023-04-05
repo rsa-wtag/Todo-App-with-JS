@@ -8,12 +8,12 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   const task_content = document.createElement("div");
   task_content.classList.add("content");
 
-  const input_element = document.createElement("p");
-  input_element.classList.add("text");
-  input_element.innerText = inputValue.value;
-  input_element.contentEditable = false;
+  const inputEement = document.createElement("p");
+  inputEement.classList.add("text");
+  inputEement.innerText = inputValue.value;
+  inputEement.contentEditable = false;
 
-  task_content.appendChild(input_element);
+  task_content.appendChild(inputEement);
 
   const tools = document.createElement("div");
   tools.classList.add("actions");
@@ -43,7 +43,7 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   taskList.prepend(task);
 
   deleteTask(dlt, task, taskList, allTasks, id);
-  doneTask(done, edit, input_element, tools, allTasks, id);
+  doneTask(done, edit, inputEement, tools, allTasks, id);
 
   inputValue.value = null;
   form.classList.add("hide");
