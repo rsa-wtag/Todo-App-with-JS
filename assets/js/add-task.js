@@ -38,7 +38,6 @@ function addTask(
       content: inputValue.value,
       date: currentDate,
       done: false,
-      edit: false,
     };
 
     allTasks[id] = taskObject;

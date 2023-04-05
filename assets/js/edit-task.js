@@ -4,7 +4,6 @@ function editTask(done, edit, dlt, revert, saveButton, inputElement, tools, allT
   edit.addEventListener(CLICK_EVENT, () => {
     const prevContent = inputElement.innerText;
     inputElement.contentEditable = true;
-    console.log(inputElement, prevContent);
     inputElement.focus();
     edit.classList.add("hide");
     dlt.classList.add("hide");
@@ -16,6 +15,7 @@ function editTask(done, edit, dlt, revert, saveButton, inputElement, tools, allT
       saveButton.classList.add("hide");
       dlt.classList.remove("hide");
       revert.classList.add("hide");
+      allTasks[id].content = inputElement.textContent;
     }
 
     saveButton.addEventListener(CLICK_EVENT, () => {
@@ -30,6 +30,7 @@ function editTask(done, edit, dlt, revert, saveButton, inputElement, tools, allT
     revert.addEventListener(CLICK_EVENT, (event) => {
       inputElement.innerText = prevContent;
       saveEvent();
+      console.log(allTasks);
       edit.classList.remove("hide");
     });
   });
