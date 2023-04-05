@@ -5,12 +5,12 @@ function showTask(inputValue, formattedDate, taskList, form) {
   const task_content = document.createElement("div");
   task_content.classList.add("content");
 
-  const input_element = document.createElement("p");
-  input_element.classList.add("text");
-  input_element.innerText = inputValue.value;
-  input_element.contentEditable = false;
+  const inputElement = document.createElement("p");
+  inputElement.classList.add("text");
+  inputElement.innerText = inputValue.value;
+  inputElement.contentEditable = false;
 
-  task_content.appendChild(input_element);
+  task_content.appendChild(inputElement);
 
   const tools = document.createElement("div");
   tools.classList.add("actions");
