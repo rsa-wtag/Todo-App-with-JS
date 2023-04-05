@@ -1,3 +1,4 @@
+import {CLICK_EVENT} from "/assets/js/constants.js";
 import deleteTaskEventListener from "/assets/js/delete-task.js";
 import doneTaskEventListener from "/assets/js/done-task.js";
 import editTaskEventListener from "/assets/js/edit-task.js";
@@ -8,7 +9,6 @@ window.addEventListener("load", () => {
   const taskList = document.querySelector("#task-list");
   const createButton = document.querySelector("#create-button");
   const cancelButton = document.querySelector("#cancel-button");
-  const CLICK_EVENT = "click";
 
   createButton.addEventListener(CLICK_EVENT, () => {
     if (form.className == "hide") {
