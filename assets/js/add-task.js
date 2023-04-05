@@ -1,4 +1,4 @@
-import {CLICK_EVENT} from "/assets/js/constants.js";
+import { CLICK_EVENT } from "/assets/js/constants.js";
 import deleteTaskEventListener from "/assets/js/delete-task.js";
 import doneTaskEventListener from "/assets/js/done-task.js";
 import editTaskEventListener from "/assets/js/edit-task.js";
@@ -53,7 +53,7 @@ window.addEventListener("load", () => {
 
     const saveButton = document.createElement("button");
     saveButton.innerText = "Save";
-    saveButton.classList.add("hide")
+    saveButton.classList.add("hide");
 
     const done = document.createElement("button");
     done.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
@@ -63,10 +63,10 @@ window.addEventListener("load", () => {
 
     const dlt = document.createElement("button");
     dlt.innerHTML = `<i class="fa-solid fa-trash-can" id="delete"></i>`;
-    
+
     const revert = document.createElement("button");
     revert.innerHTML = `<i class="fa-solid fa-trash-can" id="revert"></i>`;
-    revert.classList.add("hide")
+    revert.classList.add("hide");
 
     tools.appendChild(date);
     tools.appendChild(saveButton);
@@ -84,6 +84,14 @@ window.addEventListener("load", () => {
 
     deleteTaskEventListener(dlt, task, taskList);
     doneTaskEventListener(done, edit, input_element, currentDate, tools);
-    editTaskEventListener(dlt, done, edit, revert, saveButton, input_element, tools);
+    editTaskEventListener(
+      dlt,
+      done,
+      edit,
+      revert,
+      saveButton,
+      input_element,
+      tools
+    );
   });
 });

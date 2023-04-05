@@ -1,3 +1,5 @@
+import { CLICK_EVENT } from "/assets/js/constants.js";
+
 function editTaskEventListener(
   dlt,
   done,
@@ -7,7 +9,7 @@ function editTaskEventListener(
   input_element,
   tools
 ) {
-  edit.addEventListener("click", () => {
+  edit.addEventListener(CLICK_EVENT, () => {
     const prevContent = input_element.innerText;
     input_element.contentEditable = true;
     input_element.focus();
@@ -23,16 +25,16 @@ function editTaskEventListener(
       revert.classList.add("hide");
     }
 
-    saveButton.addEventListener("click", () => {
+    saveButton.addEventListener(CLICK_EVENT, () => {
       saveEvent();
       edit.classList.remove("hide");
     });
 
-    done.addEventListener("click", () => {
+    done.addEventListener(CLICK_EVENT, () => {
       saveEvent();
     });
 
-    revert.addEventListener("click", (event) => {
+    revert.addEventListener(CLICK_EVENT, (event) => {
       input_element.innerText = prevContent;
       saveEvent();
       edit.classList.remove("hide");
