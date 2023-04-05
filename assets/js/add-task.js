@@ -1,4 +1,4 @@
-import {CLICK_EVENT} from "../js/constants.js";
+import {CLICK_EVENT} from "/assets/js/constants.js";
 import deleteTaskEventListener from "/assets/js/delete-task.js";
 
 window.addEventListener("load", () => {
