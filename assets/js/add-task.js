@@ -1,4 +1,4 @@
-import {CLICK_EVENT} from "/assets/js/constants.js";
+import { CLICK_EVENT } from "/assets/js/constants.js";
 import deleteTaskEventListener from "/assets/js/delete-task.js";
 
 window.addEventListener("load", () => {
@@ -7,6 +7,7 @@ window.addEventListener("load", () => {
   const taskList = document.querySelector("#task-list");
   const createButton = document.querySelector("#create-button");
   const cancelButton = document.querySelector("#cancel-button");
+  const task_array = [];
 
   createButton.addEventListener(CLICK_EVENT, () => {
     if (form.className == "hide") {
@@ -71,11 +72,18 @@ window.addEventListener("load", () => {
 
     task_content.appendChild(tools);
     task.appendChild(task_content);
-    taskList.prepend(task);
+    task_array.push(task)
+    loadTask(task_array)
+    // taskList.prepend(task);
 
     inputValue.value = null;
     form.classList.add("hide");
 
-    deleteTaskEventListener(dlt, task, taskList);
+    function loadTask(task_array){
+      for(let i = task_array.length-1; i >= 0; i--){
+        taskList.appendChild(task_array[i]);
+        console.log(i);
+      }
+    }
   });
 });
