@@ -1,4 +1,4 @@
-import {CLICK_EVENT} from "../js/constants.js";
+import {CLICK_EVENT} from "/assets/js/constants.js";
 
 window.addEventListener("load", () => {
   const form = document.querySelector("#create-task");
