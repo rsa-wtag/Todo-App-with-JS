@@ -1,4 +1,4 @@
-import deleteTask from "/assets/js/delete-task.js";
+import deleteTaskEvent from "/assets/js/delete-task.js";
 
 function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   const task = document.createElement("div");
@@ -40,7 +40,7 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   task_content.appendChild(tools);
   task.appendChild(task_content);
   taskList.prepend(task);
-  deleteTask(dlt, task, taskList, allTasks, id);
+  deleteTaskEvent(dlt, task, taskList, allTasks, id);
 
   console.log(allTasks);
   inputValue.value = null;
