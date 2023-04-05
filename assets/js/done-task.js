@@ -1,6 +1,6 @@
 import { CLICK_EVENT } from "/assets/js/constants.js";
 
-function doneTask(done, edit, inputElement, tools, allTasks, id) {
+function doneTaskEvent(done, edit, inputElement, tools, allTasks, id) {
   done.addEventListener(CLICK_EVENT, () => {
     inputElement.classList.add("done");
     allTasks[id].done = true;
@@ -9,19 +9,13 @@ function doneTask(done, edit, inputElement, tools, allTasks, id) {
 
     const now = new Date();
     const diffTime = now.getTime() - allTasks[id].date.getTime();
-    const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
-    const diffDays = Math.floor(diffHours / 24);
+    const diffHours = diffTime / (1000 * 60 * 60);
+    const diffDays = Math.ceil(diffHours / 24);
 
     let completeTime = document.createElement("button");
-    completeTime.innerText = `Completed in `;
-
-    if (diffDays > 0) {
-      completeTime.innerText += diffDays.toString() + " days";
-    } else {
-      completeTime.innerText += diffHours.toString() + " hours";
-    }
-
+    completeTime.innerText = `Completed in ${diffDays.toString()} days`;
+    allTasks[id].completeTime = diffDays
     tools.appendChild(completeTime);
   });
 }
-export default doneTask;
+export default doneTaskEvent;
