@@ -1,7 +1,7 @@
 import { CLICK_EVENT } from "/assets/js/constants.js";
 import showTask from "/assets/js/show-task.js";
 
-function addTask(
+function addTaskEvent(
   createButton,
   cancelButton,
   form,
@@ -39,6 +39,7 @@ function addTask(
       content: inputValue.value,
       date: formattedDate,
       done: false,
+      compleTime: 0,
     };
 
     allTasks[id] = taskObject;
@@ -47,4 +48,4 @@ function addTask(
   });
 }
 
-export default addTask;
+export default addTaskEvent;
