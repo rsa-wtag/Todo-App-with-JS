@@ -1,8 +1,9 @@
 import { CLICK_EVENT } from "/assets/js/constants.js";
 
-function doneTask(done, edit, inputEement, tools, allTasks, id) {
+function doneTask(done, edit, inputElement, tools, allTasks, id) {
   done.addEventListener(CLICK_EVENT, () => {
-    inputEement.classList.add("done");
+    inputElement.classList.add("done");
+    allTasks[id].done = true;
     done.classList.add("hide");
     edit.classList.add("hide");
 
