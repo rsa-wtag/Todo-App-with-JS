@@ -30,7 +30,6 @@ function editTask(done, edit, dlt, revert, saveButton, inputElement, tools, allT
     revert.addEventListener(CLICK_EVENT, (event) => {
       inputElement.innerText = prevContent;
       saveEvent();
-      console.log(allTasks);
       edit.classList.remove("hide");
     });
   });
