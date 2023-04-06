@@ -8,8 +8,7 @@ function addTaskEvent(
   inputValue,
   allTasks,
   id,
-  taskList,
-  icons
+  taskList
 ) {
   createButton.addEventListener(CLICK_EVENT, () => {
     if (form.className === "hide") {
@@ -44,7 +43,7 @@ function addTaskEvent(
     };
 
     allTasks[id] = taskObject;
-    showTask(inputValue, formattedDate, taskList, form, icons);
+    showTask(inputValue, formattedDate, taskList, form);
     id++;
   });
 }

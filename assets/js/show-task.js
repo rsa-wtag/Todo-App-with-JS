@@ -1,12 +1,6 @@
-function createButton(classToAdd, ICON, ariaLabel) {
-  const button = document.createElement("button");
-  button.classList.add(classToAdd);
-  button.innerHTML = ICON;
-  button.setAttribute("aria-label", ariaLabel);
-  return button;
-}
-
-function showTask(inputValue, formattedDate, taskList, form, icons) {
+import createButton from "/assets/js/factory/createButton.js";
+import { icons } from "/assets/js/constants.js";
+function showTask(inputValue, formattedDate, taskList, form) {
   const task = document.createElement("div");
   task.classList.add("task");
 
@@ -33,12 +27,12 @@ function showTask(inputValue, formattedDate, taskList, form, icons) {
   const edit = createButton("edit", EDIT_ICON, "Edit task");
 
   const DELETE_ICON = icons["DELETE"];
-  const dlt = createButton("delete", DELETE_ICON, "Delete task");
+  const clear = createButton("delete", DELETE_ICON, "Delete task");
 
   tools.appendChild(date);
   tools.appendChild(done);
   tools.appendChild(edit);
-  tools.appendChild(dlt);
+  tools.appendChild(clear);
 
   task_content.appendChild(tools);
   task.appendChild(task_content);
