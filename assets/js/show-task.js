@@ -24,14 +24,17 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   const done = document.createElement("button");
   done.classList.add("done");
   done.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
+  done.setAttribute("aria-label", "Mark task as done");
 
   const edit = document.createElement("button");
   edit.classList.add("edit");
   edit.innerHTML = `<i class="fa-solid fa-pen" id="edit"></i>`;
+  edit.setAttribute("aria-label", "Edit task");
 
   const dlt = document.createElement("button");
   dlt.classList.add("delete");
   dlt.innerHTML = `<i class="fa-solid fa-trash-can" id="delete"></i>`;
+  dlt.setAttribute("aria-label", "Delete task");
 
   tools.appendChild(date);
   tools.appendChild(done);
