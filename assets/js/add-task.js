@@ -11,7 +11,7 @@ function addTaskEvent(
   taskList
 ) {
   createButton.addEventListener(CLICK_EVENT, () => {
-    if (form.className == "hide") {
+    if (form.className === "hide") {
       form.classList.remove("hide");
     }
     inputValue.focus();
