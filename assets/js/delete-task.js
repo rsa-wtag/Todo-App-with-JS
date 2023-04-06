@@ -12,8 +12,13 @@ function deleteTaskEvent(
 ) {
   dlt.addEventListener(CLICK_EVENT, () => {
     taskList.removeChild(task);
+    const numTasksShown = Array.from(taskList.children).filter(
+      (task) => !task.classList.contains("hide")
+    ).length;
     delete allTasks[id];
-    addPagination(taskList.children, loadButton, lessButton);
+    if (numTasksShown <= 2) {
+      addPagination(taskList.children, loadButton, lessButton, numTasksShown);
+    }
   });
 }
 export default deleteTaskEvent;

@@ -1,14 +1,18 @@
-function addPagination(allChild, loadButton, lessButton) {
-  let numTasksToShow = 2;
+function addPagination(allChild, loadButton, lessButton, numTasksShown) {
+  const numTasksToShow = 2;
+  let index = numTasksToShow;
+
+  if (numTasksShown <= numTasksToShow) {
+    console.log(lessButton.classList);
+    lessButton.classList.add("hide");
+  }
 
   if (allChild.length > numTasksToShow) {
     loadButton.classList.remove("hide");
-  }
-  else{
+  } else {
     loadButton.classList.add("hide");
   }
 
-  let index = numTasksToShow;
   for (let i = 0; i < allChild.length; i++) {
     if (i >= index) {
       allChild[i].classList.add("hide");
