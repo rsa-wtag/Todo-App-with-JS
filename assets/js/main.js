@@ -8,6 +8,19 @@ window.addEventListener("load", () => {
   const cancelButton = document.querySelector("#cancel-button");
   const allTasks = {};
   let id = 0;
-
-  addTaskEvent(createButton, cancelButton, form, inputValue, allTasks, id, taskList);
+  const icons = {
+    EDIT: `<i class="fa-solid fa-pen" id="edit"></i>`,
+    DELETE: `<i class="fa-solid fa-trash-can" id="delete"></i>`,
+    DONE: `<i class="fa-solid fa-check" id="done"></i>`,
+  };
+  addTaskEvent(
+    createButton,
+    cancelButton,
+    form,
+    inputValue,
+    allTasks,
+    id,
+    taskList,
+    icons
+  );
 });

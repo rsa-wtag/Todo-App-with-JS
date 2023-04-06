@@ -1,4 +1,12 @@
-function showTask(inputValue, formattedDate, taskList, form) {
+function createButton(classToAdd, ICON, ariaLabel) {
+  const button = document.createElement("button");
+  button.classList.add(classToAdd);
+  button.innerHTML = ICON;
+  button.setAttribute("aria-label", ariaLabel);
+  return button;
+}
+
+function showTask(inputValue, formattedDate, taskList, form, icons) {
   const task = document.createElement("div");
   task.classList.add("task");
 
@@ -18,20 +26,14 @@ function showTask(inputValue, formattedDate, taskList, form) {
   const date = document.createElement("p");
   date.innerHTML = "Created At: " + formattedDate;
 
-  const done = document.createElement("button");
-  done.classList.add("done");
-  done.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
-  done.setAttribute("aria-label", "Mark task as done");
+  const DONE_ICON = icons["DONE"];
+  const done = createButton("done", DONE_ICON, "Mark task as done");
 
-  const edit = document.createElement("button");
-  edit.classList.add("edit");
-  edit.innerHTML = `<i class="fa-solid fa-pen" id="edit"></i>`;
-  edit.setAttribute("aria-label", "Edit task");
+  const EDIT_ICON = icons["EDIT"];
+  const edit = createButton("edit", EDIT_ICON, "Edit task");
 
-  const dlt = document.createElement("button");
-  dlt.classList.add("delete");
-  dlt.innerHTML = `<i class="fa-solid fa-trash-can" id="delete"></i>`;
-  dlt.setAttribute("aria-label", "Delete task");
+  const DELETE_ICON = icons["DELETE"];
+  const dlt = createButton("delete", DELETE_ICON, "Delete task");
 
   tools.appendChild(date);
   tools.appendChild(done);
