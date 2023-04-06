@@ -7,7 +7,7 @@ window.addEventListener("load", () => {
   const createButton = document.querySelector("#create-button");
   const cancelButton = document.querySelector("#cancel-button");
   const loadButton = document.querySelector('#load-more')
-  
+  const lessButton = document.querySelector('#show-less')
   const allTasks = {};
   let id = 0;
 
@@ -19,7 +19,7 @@ window.addEventListener("load", () => {
     allTasks,
     id,
     taskList,
-    loadButton
+    loadButton,
+    lessButton
   );
-
 });

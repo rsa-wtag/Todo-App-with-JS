@@ -10,7 +10,8 @@ function addTaskEvent(
   allTasks,
   id,
   taskList,
-  loadButton
+  loadButton,
+  lessButton
 ) {
   createButton.addEventListener(CLICK_EVENT, () => {
     if (form.className == "hide") {
@@ -46,8 +47,7 @@ function addTaskEvent(
     allTasks[id] = taskObject;
     showTask(inputValue, formattedDate, taskList, form, allTasks, id);
     id += 1;
-    // console.log(taskList.children);
-    addPagination(taskList.children, loadButton);
+    addPagination(taskList.children, loadButton, lessButton);
   });
 }
 
