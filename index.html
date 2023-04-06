@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- Title -->
-    <link rel = "icon" 
-        href = "./assets/images/leaf.png" 
-        type = "image/x-icon">
+    <link rel="icon" href="/assets/images/leaf.png" type="image/x-icon" />
     <title>Todos</title>
 
     <!-- css -->
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
-    
+    <link rel="stylesheet" href="/assets/css/style.css" />
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/bf62453df6.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <h1>Add Tasks</h1>
+
+    <button id="create-button"><i class="fa-solid fa-plus"></i> Create</button>
+
+    <!-- Create Task -->
+    <form id="create-task" class="hide">
+      <input type="text" id="input-value" placeholder="Create your task" />
+      <input type="submit" id="add-task" value="Add Task" />
+      <i class="fa-solid fa-trash-can" id="cancel-button"></i>
+    </form>
+
+    <!-- Task Lists -->
+    <div id="task-list"></div>
+
     <!-- js -->
-    <script src="./assets/js/main.js"></script>
-</body>
+    <script type="module" src="/assets/js/main.js"></script>
+  </body>
 </html>
