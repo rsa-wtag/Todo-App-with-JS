@@ -2,7 +2,16 @@ import deleteTaskEvent from "/assets/js/delete-task.js";
 import doneTaskEvent from "/assets/js/done-task.js";
 import editTaskEvent from "/assets/js/edit-task.js";
 
-function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
+function showTask(
+  inputValue,
+  formattedDate,
+  taskList,
+  form,
+  allTasks,
+  id,
+  loadButton,
+  lessButton
+) {
   const task = document.createElement("div");
   task.classList.add("task");
 
@@ -53,7 +62,7 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   task.appendChild(task_content);
   taskList.prepend(task);
 
-  deleteTaskEvent(dlt, task, taskList, allTasks, id);
+  deleteTaskEvent(dlt, task, taskList, allTasks, id, loadButton, lessButton);
   doneTaskEvent(done, edit, inputElement, tools, allTasks, id);
   editTaskEvent(
     done,

@@ -45,7 +45,16 @@ function addTaskEvent(
     };
 
     allTasks[id] = taskObject;
-    showTask(inputValue, formattedDate, taskList, form, allTasks, id);
+    showTask(
+      inputValue,
+      formattedDate,
+      taskList,
+      form,
+      allTasks,
+      id,
+      loadButton,
+      lessButton
+    );
     id += 1;
     addPagination(taskList.children, loadButton, lessButton);
   });
