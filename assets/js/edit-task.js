@@ -1,6 +1,16 @@
 import { CLICK_EVENT } from "/assets/js/constants.js";
 
-function editTaskEvent(done, edit, dlt, revert, saveButton, inputElement, tools, allTasks, id) {
+function editTaskEvent(
+  done,
+  edit,
+  dlt,
+  revert,
+  saveButton,
+  inputElement,
+  tools,
+  allTasks,
+  id
+) {
   edit.addEventListener(CLICK_EVENT, () => {
     const prevContent = inputElement.innerText;
     inputElement.contentEditable = true;

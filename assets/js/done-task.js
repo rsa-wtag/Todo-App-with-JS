@@ -14,7 +14,7 @@ function doneTaskEvent(done, edit, inputElement, tools, allTasks, id) {
 
     let completeTime = document.createElement("button");
     completeTime.innerText = `Completed in ${diffDays.toString()} days`;
-    allTasks[id].completeTime = diffDays
+    allTasks[id].completeTime = diffDays;
     tools.appendChild(completeTime);
   });
 }

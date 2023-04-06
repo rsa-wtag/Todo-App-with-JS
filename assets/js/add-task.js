@@ -1,5 +1,6 @@
 import { CLICK_EVENT } from "/assets/js/constants.js";
 import showTask from "/assets/js/show-task.js";
+import addPagination from "/assets/js/add-pagination.js";
 
 function addTaskEvent(
   createButton,
@@ -8,7 +9,8 @@ function addTaskEvent(
   inputValue,
   allTasks,
   id,
-  taskList
+  taskList,
+  loadButton
 ) {
   createButton.addEventListener(CLICK_EVENT, () => {
     if (form.className == "hide") {
@@ -43,7 +45,9 @@ function addTaskEvent(
 
     allTasks[id] = taskObject;
     showTask(inputValue, formattedDate, taskList, form, allTasks, id);
-    id++;
+    id += 1;
+    // console.log(taskList.children);
+    addPagination(taskList.children, loadButton);
   });
 }
 

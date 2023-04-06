@@ -6,8 +6,20 @@ window.addEventListener("load", () => {
   const taskList = document.querySelector("#task-list");
   const createButton = document.querySelector("#create-button");
   const cancelButton = document.querySelector("#cancel-button");
+  const loadButton = document.querySelector('#load-more')
+  
   let allTasks = {};
   let id = 0;
 
-  addTaskEvent(createButton, cancelButton, form, inputValue, allTasks, id, taskList);
+  addTaskEvent(
+    createButton,
+    cancelButton,
+    form,
+    inputValue,
+    allTasks,
+    id,
+    taskList,
+    loadButton
+  );
+
 });
