@@ -8,7 +8,7 @@ window.addEventListener("load", () => {
   const cancelButton = document.querySelector("#cancel-button");
   const loadButton = document.querySelector('#load-more')
   
-  let allTasks = {};
+  const allTasks = {};
   let id = 0;
 
   addTaskEvent(

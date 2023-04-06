@@ -28,12 +28,15 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
 
   const done = document.createElement("button");
   done.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
+  done.setAttribute("aria-label", "Mark task as done");
 
   const edit = document.createElement("button");
   edit.innerHTML = `<i class="fa-solid fa-pen" id="edit"></i>`;
+  edit.setAttribute("aria-label", "Edit task");
 
   const dlt = document.createElement("button");
   dlt.innerHTML = `<i class="fa-solid fa-trash-can" id="delete"></i>`;
+  dlt.setAttribute("aria-label", "Delete task");
 
   const revert = document.createElement("button");
   revert.innerHTML = `<i class="fa-solid fa-trash-can" id="revert"></i>`;
