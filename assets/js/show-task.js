@@ -1,6 +1,6 @@
 import deleteTaskEvent from "/assets/js/delete-task.js";
-import { HIDE_CLASS } from "/assets/js/constants.js";
-
+import { HIDE_CLASS, icons } from "/assets/js/constants.js";
+import createButton from "/assets/js/factory/createButton.js";
 function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   const task = document.createElement("div");
   task.classList.add("task");
@@ -21,20 +21,14 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   const date = document.createElement("p");
   date.innerHTML = "Created At: " + formattedDate;
 
-  const doneButton = document.createElement("button");
-  doneButton.classList.add("done");
-  doneButton.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
-  doneButton.setAttribute("aria-label", "Mark task as done");
+  const DONE_ICON = icons["DONE"];
+  const doneButton = createButton("done", DONE_ICON, "Mark task as done");
 
-  const editButton = document.createElement("button");
-  editButton.classList.add("edit");
-  editButton.innerHTML = `<i class="fa-solid fa-pen" id="edit"></i>`;
-  editButton.setAttribute("aria-label", "Edit task");
+  const EDIT_ICON = icons["EDIT"];
+  const editButton = createButton("edit", EDIT_ICON, "Edit task");
 
-  const deleteButton = document.createElement("button");
-  deleteButton.classList.add("delete");
-  deleteButton.innerHTML = `<i class="fa-solid fa-trash-can" id="delete"></i>`;
-  deleteButton.setAttribute("aria-label", "Delete task");
+  const DELETE_ICON = icons["DELETE"];
+  const deleteButton = createButton("delete", DELETE_ICON, "Delete task");
 
   tools.appendChild(date);
   tools.appendChild(doneButton);
