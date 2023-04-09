@@ -8,6 +8,13 @@ window.addEventListener("load", () => {
   const cancelButton = document.querySelector("#cancel-button");
   const allTasks = {};
   let id = 0;
-
-  addTaskEvent(createButton, cancelButton, form, inputValue, allTasks, id, taskList);
+  addTaskEvent(
+    createButton,
+    cancelButton,
+    form,
+    inputValue,
+    allTasks,
+    id,
+    taskList
+  );
 });

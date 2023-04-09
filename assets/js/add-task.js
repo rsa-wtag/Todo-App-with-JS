@@ -1,4 +1,4 @@
-import { CLICK_EVENT } from "/assets/js/constants.js";
+import { CLICK_EVENT, HIDE_CLASS } from "/assets/js/constants.js";
 import showTask from "/assets/js/show-task.js";
 
 function addTaskEvent(
@@ -11,14 +11,14 @@ function addTaskEvent(
   taskList
 ) {
   createButton.addEventListener(CLICK_EVENT, () => {
-    if (form.className == "hide") {
-      form.classList.remove("hide");
+    if (form.className == HIDE_CLASS) {
+      form.classList.remove(HIDE_CLASS);
     }
     inputValue.focus();
   });
 
   cancelButton.addEventListener(CLICK_EVENT, () => {
-    form.classList.add("hide");
+    form.classList.add(HIDE_CLASS);
     inputValue.value = null;
   });
 
