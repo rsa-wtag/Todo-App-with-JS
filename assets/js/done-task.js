@@ -13,10 +13,15 @@ function doneTaskEvent(done, edit, inputElement, tools, allTasks, id) {
     const diffHours = diffTime / (1000 * 60 * 60);
     const diffDays = Math.ceil(diffHours / 24);
 
-    const completeTimeButtonText = `Completed in ${diffDays.toString()} day${diffDays>1 ? `s` : ``}`;
-    let completeTime = createButton("complete-time", completeTimeButtonText, "Time to complete the task");
-    
-    allTasks[id].completeTime = diffDays
+    const completeTimeButtonText =
+      diffDays === 1 ? `Completed in 1 day` : `Completed in ${diffDays} days`;
+    let completeTime = createButton(
+      "complete-time",
+      completeTimeButtonText,
+      "Time to complete the task"
+    );
+
+    allTasks[id].completeTime = diffDays;
     tools.appendChild(completeTime);
   });
 }
