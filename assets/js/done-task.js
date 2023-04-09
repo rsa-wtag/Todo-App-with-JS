@@ -13,9 +13,8 @@ function doneTaskEvent(done, edit, inputElement, tools, allTasks, id) {
     const diffHours = diffTime / (1000 * 60 * 60);
     const diffDays = Math.ceil(diffHours / 24);
 
-    const completeTimeButtonText = `Completed in ${diffDays.toString()} day${
-      diffDays > 1 ? `s` : ``
-    }`;
+    const completeTimeButtonText =
+      diffDays === 1 ? `Completed in 1 day` : `Completed in ${diffDays} days`;
     let completeTime = createButton(
       "complete-time",
       completeTimeButtonText,
