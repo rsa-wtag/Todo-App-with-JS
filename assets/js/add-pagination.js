@@ -3,7 +3,7 @@ function addPagination(allChild, loadButton, lessButton, numTasksShown) {
   let index = numTasksToShow;
 
   if (numTasksShown <= numTasksToShow) {
-    console.log(lessButton.classList);
+    // console.log(lessButton.classList);
     lessButton.classList.add("hide");
   }
 
@@ -22,7 +22,7 @@ function addPagination(allChild, loadButton, lessButton, numTasksShown) {
   }
 
   loadButton.addEventListener("click", () => {
-    console.log(index + numTasksToShow, allChild.length);
+    // console.log(index + numTasksToShow, allChild.length);
     for (
       let i = index;
       i < Math.min(index + numTasksToShow, allChild.length);
