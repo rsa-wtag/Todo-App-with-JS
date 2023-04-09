@@ -1,19 +1,21 @@
-import { CLICK_EVENT } from "/assets/js/constants.js";
+import { CLICK_EVENT, HIDE_CLASS } from "/assets/js/constants.js";
+import createButton from "/assets/js/factory/createButton.js";
 
 function doneTaskEvent(done, edit, inputElement, tools, allTasks, id) {
   done.addEventListener(CLICK_EVENT, () => {
     inputElement.classList.add("done");
     allTasks[id].done = true;
-    done.classList.add("hide");
-    edit.classList.add("hide");
+    done.classList.add(HIDE_CLASS);
+    edit.classList.add(HIDE_CLASS);
 
-    const now = new Date();
-    const diffTime = now.getTime() - allTasks[id].date.getTime();
+    const currentDate = new Date();
+    const diffTime = currentDate.getTime() - allTasks[id].date.getTime();
     const diffHours = diffTime / (1000 * 60 * 60);
     const diffDays = Math.ceil(diffHours / 24);
 
-    let completeTime = document.createElement("button");
-    completeTime.innerText = `Completed in ${diffDays.toString()} days`;
+    const completeTimeButtonText = `Completed in ${diffDays.toString()} day${diffDays>1 ? `s` : ``}`;
+    let completeTime = createButton("complete-time", completeTimeButtonText, "Time to complete the task");
+    
     allTasks[id].completeTime = diffDays
     tools.appendChild(completeTime);
   });

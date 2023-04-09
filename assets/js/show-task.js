@@ -1,3 +1,5 @@
+import { HIDE_CLASS, icons } from "/assets/js/constants.js";
+import createButton from "/assets/js/factory/createButton.js";
 import deleteTaskEvent from "/assets/js/delete-task.js";
 import doneTaskEvent from "/assets/js/done-task.js";
 import editTaskEvent from "/assets/js/edit-task.js";
@@ -24,42 +26,35 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
 
   const saveButton = document.createElement("button");
   saveButton.innerText = "Save";
-  saveButton.classList.add("hide");
+  saveButton.classList.add(HIDE_CLASS);
 
-  const done = document.createElement("button");
-  done.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
-  done.setAttribute("aria-label", "Mark task as done");
+  const DONE_ICON = icons["DONE"];
+  const doneButton = createButton("done", DONE_ICON, "Mark task as done");
 
-  const edit = document.createElement("button");
-  edit.innerHTML = `<i class="fa-solid fa-pen" id="edit"></i>`;
-  edit.setAttribute("aria-label", "Edit task");
+  const EDIT_ICON = icons["EDIT"];
+  const editButton = createButton("edit", EDIT_ICON, "Edit task");
 
-  const dlt = document.createElement("button");
-  dlt.innerHTML = `<i class="fa-solid fa-trash-can" id="delete"></i>`;
-  dlt.setAttribute("aria-label", "Delete task");
-
-  const revert = document.createElement("button");
-  revert.innerHTML = `<i class="fa-solid fa-trash-can" id="revert"></i>`;
-  revert.classList.add("hide");
+  const DELETE_ICON = icons["DELETE"];
+  const deleteButton = createButton("delete", DELETE_ICON, "Delete task");
 
   tools.appendChild(date);
   tools.appendChild(saveButton);
-  tools.appendChild(done);
-  tools.appendChild(edit);
-  tools.appendChild(dlt);
-  tools.appendChild(revert);
+  tools.appendChild(doneButton);
+  tools.appendChild(editButton);
+  tools.appendChild(deleteButton);
+  tools.appendChild(revertButton);
 
   task_content.appendChild(tools);
   task.appendChild(task_content);
   taskList.prepend(task);
 
-  deleteTaskEvent(dlt, task, taskList, allTasks, id);
-  doneTaskEvent(done, edit, inputElement, tools, allTasks, id);
+  deleteTaskEvent(deleteButton, task, taskList, allTasks, id);
+  doneTaskEvent(doneButton, editButton, inputElement, tools, allTasks, id);
   editTaskEvent(
     done,
     edit,
     dlt,
-    revert,
+    revertButton,
     saveButton,
     inputElement,
     tools,
@@ -68,7 +63,7 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   );
 
   inputValue.value = null;
-  form.classList.add("hide");
+  form.classList.add(HIDE_CLASS);
 }
 
 export default showTask;
