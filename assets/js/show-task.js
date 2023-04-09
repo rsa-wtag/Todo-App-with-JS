@@ -1,4 +1,5 @@
 import deleteTaskEvent from "/assets/js/delete-task.js";
+import { HIDE_CLASS } from "/assets/js/constants.js";
 
 function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   const task = document.createElement("div");
@@ -20,34 +21,33 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   const date = document.createElement("p");
   date.innerHTML = "Created At: " + formattedDate;
 
-  const done = document.createElement("button");
-  done.classList.add("done");
-  done.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
-  done.setAttribute("aria-label", "Mark task as done");
+  const doneButton = document.createElement("button");
+  doneButton.classList.add("done");
+  doneButton.innerHTML = `<i class="fa-solid fa-check" id="done"></i>`;
+  doneButton.setAttribute("aria-label", "Mark task as done");
 
-  const edit = document.createElement("button");
-  edit.classList.add("edit");
-  edit.innerHTML = `<i class="fa-solid fa-pen" id="edit"></i>`;
-  edit.setAttribute("aria-label", "Edit task");
+  const editButton = document.createElement("button");
+  editButton.classList.add("edit");
+  editButton.innerHTML = `<i class="fa-solid fa-pen" id="edit"></i>`;
+  editButton.setAttribute("aria-label", "Edit task");
 
-  const dlt = document.createElement("button");
-  dlt.classList.add("delete");
-  dlt.innerHTML = `<i class="fa-solid fa-trash-can" id="delete"></i>`;
-  dlt.setAttribute("aria-label", "Delete task");
+  const deleteButton = document.createElement("button");
+  deleteButton.classList.add("delete");
+  deleteButton.innerHTML = `<i class="fa-solid fa-trash-can" id="delete"></i>`;
+  deleteButton.setAttribute("aria-label", "Delete task");
 
   tools.appendChild(date);
-  tools.appendChild(done);
-  tools.appendChild(edit);
-  tools.appendChild(dlt);
+  tools.appendChild(doneButton);
+  tools.appendChild(editButton);
+  tools.appendChild(deleteButton);
 
   task_content.appendChild(tools);
   task.appendChild(task_content);
   taskList.prepend(task);
-  deleteTaskEvent(dlt, task, taskList, allTasks, id);
+  deleteTaskEvent(deleteButton, task, taskList, allTasks, id);
 
-  console.log(allTasks);
   inputValue.value = null;
-  form.classList.add("hide");
+  form.classList.add(HIDE_CLASS);
 }
 
 export default showTask;
