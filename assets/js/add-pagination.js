@@ -22,6 +22,7 @@ function addPagination(allChild, loadButton, lessButton, numTasksShown) {
   }
 
   loadButton.addEventListener("click", () => {
+    console.log(index + numTasksToShow, allChild.length);
     for (
       let i = index;
       i < Math.min(index + numTasksToShow, allChild.length);
