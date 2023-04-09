@@ -37,6 +37,13 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   const DELETE_ICON = icons["DELETE"];
   const deleteButton = createButton("delete", DELETE_ICON, "Delete task");
 
+  const REVERT_ICON = icons["REVERT"];
+  const revertButton = createButton(
+    HIDE_CLASS,
+    REVERT_ICON,
+    "Revert to previous task"
+  );
+
   tools.appendChild(date);
   tools.appendChild(saveButton);
   tools.appendChild(doneButton);
@@ -51,9 +58,9 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
   deleteTaskEvent(deleteButton, task, taskList, allTasks, id);
   doneTaskEvent(doneButton, editButton, inputElement, tools, allTasks, id);
   editTaskEvent(
-    done,
-    edit,
-    dlt,
+    doneButton,
+    editButton,
+    deleteButton,
     revertButton,
     saveButton,
     inputElement,
