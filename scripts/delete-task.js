@@ -4,8 +4,8 @@ function onDeleteTask(deleteButton, task, taskListElement, tasks, id) {
   deleteButton.addEventListener(CLICK_EVENT, deleteTask);
 
   function deleteTask() {
-    taskList.removeChild(task);
-    delete allTasks[id];
+    taskListElement.removeChild(task);
+    delete tasks[id];
     deleteButton.removeEventListener(CLICK_EVENT, deleteTask);
   }
 }
