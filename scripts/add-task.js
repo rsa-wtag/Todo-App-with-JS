@@ -1,30 +1,30 @@
-import { CLICK_EVENT, HIDE_CLASS } from "/assets/js/constants.js";
-import showTask from "/assets/js/show-task.js";
+import { CLICK_EVENT, HIDE_CLASS } from "/scripts/constants.js";
+import showTask from "/scripts/show-task.js";
 
-function addTaskEvent(
+function addTask(
   createButton,
   cancelButton,
   form,
-  inputValue,
-  allTasks,
+  inputElementValue,
+  tasks,
   id,
-  taskList
+  taskListElement
 ) {
   createButton.addEventListener(CLICK_EVENT, () => {
     if (form.className == HIDE_CLASS) {
       form.classList.remove(HIDE_CLASS);
     }
-    inputValue.focus();
+    inputElementValue.focus();
   });
 
   cancelButton.addEventListener(CLICK_EVENT, () => {
     form.classList.add(HIDE_CLASS);
-    inputValue.value = null;
+    inputElementValue.value = null;
   });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (!inputValue.value) {
+    if (!inputElementValue.value) {
       return;
     }
 
@@ -35,16 +35,16 @@ function addTaskEvent(
       .replace(/\//g, ".");
 
     let taskObject = {
-      content: inputValue.value,
+      content: inputElementValue.value,
       date: currentDate,
       done: false,
       compleTime: 0,
     };
 
-    allTasks[id] = taskObject;
-    showTask(inputValue, formattedDate, taskList, form, allTasks, id);
+    tasks[id] = taskObject;
+    showTask(inputElementValue, formattedDate, taskListElement, form, tasks, id);
     id++;
   });
 }
 
-export default addTaskEvent;
+export default addTask;

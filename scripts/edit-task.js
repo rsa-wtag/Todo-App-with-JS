@@ -1,14 +1,14 @@
-import { CLICK_EVENT, HIDE_CLASS } from "/assets/js/constants.js";
+import { CLICK_EVENT, HIDE_CLASS } from "/scripts/constants.js";
 
-function editTaskEvent(
+function onTaskEdit(
   doneButton,
   editButton,
   deleteButton,
   revertButton,
   saveButton,
   inputElement,
-  tools,
-  allTasks,
+  toolbar,
+  tasks,
   id
 ) {
   editButton.addEventListener(CLICK_EVENT, () => {
@@ -25,7 +25,7 @@ function editTaskEvent(
       saveButton.classList.add(HIDE_CLASS);
       deleteButton.classList.remove(HIDE_CLASS);
       revertButton.classList.add(HIDE_CLASS);
-      allTasks[id].content = inputElement.textContent;
+      tasks[id].content = inputElement.textContent;
     }
 
     function saveEvent() {
@@ -52,4 +52,4 @@ function editTaskEvent(
     });
   });
 }
-export default editTaskEvent;
+export default onTaskEdit;

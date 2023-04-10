@@ -1,10 +1,17 @@
-import { HIDE_CLASS, icons } from "/assets/js/constants.js";
-import createButton from "/assets/js/factory/createButton.js";
-import deleteTaskEvent from "/assets/js/delete-task.js";
-import doneTaskEvent from "/assets/js/done-task.js";
-import editTaskEvent from "/assets/js/edit-task.js";
+import { HIDE_CLASS, icons } from "/scripts/constants.js";
+import createButton from "/scripts/factory/createButton.js";
+import onDeleteTask from "/scripts/delete-task.js";
+import onTaskComplete from "/scripts/done-task.js";
+import onTaskEdit from "/scripts/edit-task.js";
 
-function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
+function showTask(
+  inputElementValue,
+  formattedDate,
+  taskListElement,
+  form,
+  tasks,
+  id
+) {
   const task = document.createElement("div");
   task.classList.add("task");
 
@@ -13,13 +20,13 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
 
   const inputElement = document.createElement("p");
   inputElement.classList.add("text");
-  inputElement.innerText = inputValue.value;
+  inputElement.innerText = inputElementValue.value;
   inputElement.contentEditable = false;
 
   task_content.appendChild(inputElement);
 
-  const tools = document.createElement("div");
-  tools.classList.add("actions");
+  const toolbar = document.createElement("div");
+  toolbar.classList.add("actions");
 
   const date = document.createElement("p");
   date.innerHTML = "Created At: " + formattedDate;
@@ -44,32 +51,30 @@ function showTask(inputValue, formattedDate, taskList, form, allTasks, id) {
     "Revert to previous task"
   );
 
-  tools.appendChild(date);
-  tools.appendChild(saveButton);
-  tools.appendChild(doneButton);
-  tools.appendChild(editButton);
-  tools.appendChild(deleteButton);
-  tools.appendChild(revertButton);
+  toolbar.appendChild(date);
+  toolbar.appendChild(saveButton);
+  toolbar.appendChild(doneButton);
+  toolbar.appendChild(editButton);
+  toolbar.appendChild(deleteButton);
+  toolbar.appendChild(revertButton);
 
-  task_content.appendChild(tools);
+  task_content.appendChild(toolbar);
   task.appendChild(task_content);
-  taskList.prepend(task);
-
-  deleteTaskEvent(deleteButton, task, taskList, allTasks, id);
-  doneTaskEvent(doneButton, editButton, inputElement, tools, allTasks, id);
-  editTaskEvent(
+  taskListElement.prepend(task);
+  onDeleteTask(deleteButton, task, taskListElement, tasks, id);
+  onTaskComplete(doneButton, editButton, inputElement, toolbar, tasks, id);
+  onTaskEdit(
     doneButton,
     editButton,
     deleteButton,
     revertButton,
     saveButton,
     inputElement,
-    tools,
-    allTasks,
+    toolbar,
+    tasks,
     id
   );
-
-  inputValue.value = null;
+  inputElementValue.value = null;
   form.classList.add(HIDE_CLASS);
 }
 

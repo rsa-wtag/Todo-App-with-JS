@@ -1,6 +1,7 @@
 .hide {
   display: none;
 }
-.done{
+
+.done {
   text-decoration: line-through;
 }
