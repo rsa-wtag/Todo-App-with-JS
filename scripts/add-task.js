@@ -5,7 +5,7 @@ function addTask(
   createButton,
   cancelButton,
   form,
-  inputValue,
+  inputElementValue,
   tasks,
   id,
   taskListElement
@@ -14,17 +14,17 @@ function addTask(
     if (form.className == HIDE_CLASS) {
       form.classList.remove(HIDE_CLASS);
     }
-    inputValue.focus();
+    inputElementValue.focus();
   });
 
   cancelButton.addEventListener(CLICK_EVENT, () => {
     form.classList.add(HIDE_CLASS);
-    inputValue.value = null;
+    inputElementValue.value = null;
   });
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    if (!inputValue.value) {
+    if (!inputElementValue.value) {
       return;
     }
 
@@ -35,14 +35,14 @@ function addTask(
       .replace(/\//g, ".");
 
     let taskObject = {
-      content: inputValue.value,
+      content: inputElementValue.value,
       date: currentDate,
       done: false,
       compleTime: 0,
     };
 
     tasks[id] = taskObject;
-    showTask(inputValue, formattedDate, taskListElement, form, tasks, id);
+    showTask(inputElementValue, formattedDate, taskListElement, form, tasks, id);
     id++;
   });
 }
