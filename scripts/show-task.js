@@ -27,36 +27,37 @@ function showTask(
 
   const toolbar = document.createElement("div");
   toolbar.classList.add("actions");
-
-  const date = document.createElement("p");
-  date.innerHTML = "Created At: " + formattedDate;
-
-  const saveButton = document.createElement("button");
-  saveButton.innerText = "Save";
-  saveButton.classList.add(HIDE_CLASS);
-
-  const DONE_ICON = icons["DONE"];
-  const doneButton = createButton("done", DONE_ICON, "Mark task as done");
-
-  const EDIT_ICON = icons["EDIT"];
-  const editButton = createButton("edit", EDIT_ICON, "Edit task");
-
-  const DELETE_ICON = icons["DELETE"];
-  const deleteButton = createButton("delete", DELETE_ICON, "Delete task");
-
-  const REVERT_ICON = icons["REVERT"];
+  const date = document.createElement(
+    "p",
+    "Created At: " + formattedDate,
+    true
+  );
+  const saveButton = createButton(HIDE_CLASS, "Save", "Save the task");
+  const doneButton = createButton(
+    "done",
+    icons["DONE_ICON"],
+    "Mark task as done"
+  );
+  const editButton = createButton("edit", icons["EDIT_ICON"], "Edit task");
+  const deleteButton = createButton(
+    "delete",
+    icons["DELETE_ICON"],
+    "Delete task"
+  );
   const revertButton = createButton(
     HIDE_CLASS,
-    REVERT_ICON,
+    icons["REVERT_ICON"],
     "Revert to previous task"
   );
 
-  toolbar.appendChild(date);
-  toolbar.appendChild(saveButton);
-  toolbar.appendChild(doneButton);
-  toolbar.appendChild(editButton);
-  toolbar.appendChild(deleteButton);
-  toolbar.appendChild(revertButton);
+  toolbar.append(
+    date,
+    saveButton,
+    doneButton,
+    editButton,
+    deleteButton,
+    revertButton
+  );
 
   task_content.appendChild(toolbar);
   task.appendChild(task_content);

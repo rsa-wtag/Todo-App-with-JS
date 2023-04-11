@@ -5,4 +5,5 @@ function createButton(classToAdd, ICON, ariaLabel) {
   button.setAttribute("aria-label", ariaLabel);
   return button;
 }
+
 export default createButton;
