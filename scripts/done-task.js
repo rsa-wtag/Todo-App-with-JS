@@ -18,21 +18,21 @@ function onTaskComplete(
     doneButton.classList.add(HIDE_CLASS);
     editButton.classList.add(HIDE_CLASS);
 
-    const currentDate = new Date();
-    const diffTime = currentDate.getTime() - task.date.getTime();
+    const now = Date.now();
+    const diffTime = now - task.date.getTime();
     const diffHours = diffTime / (1000 * 60 * 60);
     const diffDays = Math.ceil(diffHours / 24);
 
     const completeTimeButtonText =
       diffDays === 1 ? `Completed in 1 day` : `Completed in ${diffDays} days`;
-    const completeTime = createButton(
+    const completeTimeBtn = createButton(
       "complete-time",
       completeTimeButtonText,
       "Time to complete the task"
     );
 
     task.completeTime = diffDays;
-    toolbar.appendChild(completeTime);
+    toolbar.appendChild(completeTimeBtn);
     doneButton.removeEventListener(CLICK_EVENT, doneTask);
   }
 }
