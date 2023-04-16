@@ -23,11 +23,11 @@ function onTaskComplete(
     const diffHours = diffTime / (1000 * 60 * 60);
     const diffDays = Math.ceil(diffHours / 24);
 
-    const completeTimeButtonText =
+    const completedText =
       diffDays === 1 ? `Completed in 1 day` : `Completed in ${diffDays} days`;
     const completeTimeBtn = createButton(
       "complete-time",
-      completeTimeButtonText,
+      completedText,
       "Time to complete the task"
     );
 
