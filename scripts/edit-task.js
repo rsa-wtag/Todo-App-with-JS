@@ -11,18 +11,31 @@ function onTaskEdit(
   tasks,
   id
 ) {
+  function toggleButtons(...buttons) {
+    buttons.forEach((e) => {
+      // console.log(e.classList.contains(HIDE_CLASS), e);
+      if (e.classList.contains(HIDE_CLASS)) {
+        e.classList.remove(HIDE_CLASS);
+      } else {
+        e.classList.add(HIDE_CLASS);
+      }
+    });
+    // console.log();
+  }
+
   function onEditButtonClick() {
     const prevContent = inputElement.innerText;
     inputElement.contentEditable = true;
     inputElement.focus();
-    [editButton, deleteButton].forEach((e) => e.classList.add(HIDE_CLASS));
-    [revertButton, saveButton].forEach((e) => e.classList.remove(HIDE_CLASS));
+    toggleButtons(editButton, deleteButton, revertButton, saveButton);
 
     function commonEvent() {
       inputElement.contentEditable = false;
-      saveButton.classList.add(HIDE_CLASS);
-      revertButton.classList.add(HIDE_CLASS);
-      deleteButton.classList.remove(HIDE_CLASS);
+      toggleButtons(saveButton, deleteButton, revertButton);
+
+      // saveButton.classList.add(HIDE_CLASS);
+      // revertButton.classList.add(HIDE_CLASS);
+      // deleteButton.classList.remove(HIDE_CLASS);
     }
     function onTodoDone() {
       commonEvent();
@@ -34,7 +47,8 @@ function onTaskEdit(
     function saveEvent() {
       commonEvent();
       tasks[id].content = inputElement.textContent;
-      editButton.classList.remove(HIDE_CLASS);
+      toggleButtons(editButton);
+      // editButton.classList.remove(HIDE_CLASS);
       saveButton.removeEventListener(CLICK_EVENT, saveEvent);
     }
 
@@ -42,7 +56,8 @@ function onTaskEdit(
       inputElement.innerText = prevContent;
       commonEvent();
       tasks[id].content = inputElement.textContent;
-      editButton.classList.remove(HIDE_CLASS);
+      toggleButtons(editButton);
+      // editButton.classList.remove(HIDE_CLASS);
       revertButton.removeEventListener(CLICK_EVENT, revertEvent);
     }
 
