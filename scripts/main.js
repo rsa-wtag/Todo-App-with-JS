@@ -2,7 +2,7 @@ import addTask from "/scripts/add-task.js";
 
 window.addEventListener("load", () => {
   const form = document.querySelector("#create-task");
-  const inputElementValue = document.querySelector("#input-value");
+  const inputElement = document.querySelector("#input-value");
   const taskListElement = document.querySelector("#task-list");
   const createButton = document.querySelector("#create-button");
   const cancelButton = document.querySelector("#cancel-button");
@@ -12,7 +12,7 @@ window.addEventListener("load", () => {
     createButton,
     cancelButton,
     form,
-    inputElementValue,
+    inputElement,
     tasks,
     id,
     taskListElement
