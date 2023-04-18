@@ -1,9 +1,12 @@
 import { CLICK_EVENT, HIDE_CLASS } from "/scripts/constants.js";
+import createButton from "/scripts/factory/createButton.js";
+import toggleButtons from "/scripts/factory/toggleButton.js";
 
 function onTaskEdit(
   doneButton,
   editButton,
   deleteButton,
+  saveAndDoneButton,
   revertButton,
   saveButton,
   inputElement,
@@ -11,58 +14,80 @@ function onTaskEdit(
   tasks,
   id
 ) {
-  function toggleButtons(...buttons) {
-    buttons.forEach((e) => {
-      // console.log(e.classList.contains(HIDE_CLASS), e);
-      if (e.classList.contains(HIDE_CLASS)) {
-        e.classList.remove(HIDE_CLASS);
-      } else {
-        e.classList.add(HIDE_CLASS);
-      }
-    });
-    // console.log();
-  }
-
   function onEditButtonClick() {
     const prevContent = inputElement.innerText;
     inputElement.contentEditable = true;
     inputElement.focus();
-    toggleButtons(editButton, deleteButton, revertButton, saveButton);
-
-    function commonEvent() {
-      inputElement.contentEditable = false;
-      toggleButtons(saveButton, deleteButton, revertButton);
-
-      // saveButton.classList.add(HIDE_CLASS);
-      // revertButton.classList.add(HIDE_CLASS);
-      // deleteButton.classList.remove(HIDE_CLASS);
-    }
-    function onTodoDone() {
-      commonEvent();
-      tasks[id].content = inputElement.textContent;
-      editButton.removeEventListener(CLICK_EVENT, onEditButtonClick);
-      doneButton.removeEventListener(CLICK_EVENT, onTodoDone);
-    }
+    toggleButtons(
+      editButton,
+      deleteButton,
+      revertButton,
+      saveButton,
+      saveAndDoneButton,
+      doneButton
+    );
 
     function saveEvent() {
-      commonEvent();
+      inputElement.contentEditable = false;
       tasks[id].content = inputElement.textContent;
-      toggleButtons(editButton);
-      // editButton.classList.remove(HIDE_CLASS);
+      toggleButtons(
+        editButton,
+        deleteButton,
+        revertButton,
+        saveButton,
+        doneButton,
+        saveAndDoneButton
+      );
       saveButton.removeEventListener(CLICK_EVENT, saveEvent);
+    }
+
+    function onTodoDone() {
+      inputElement.classList.add("done");
+      const task = tasks[id];
+      task.done = true;
+      toggleButtons(saveAndDoneButton);
+      if (!editButton.classList.contains(HIDE_CLASS)) {
+        toggleButtons(editButton);
+      }
+      const diffDays = getTaskCompletedDays(task.date.getTime());
+
+      const completedText =
+        diffDays === 1 ? `Completed in 1 day` : `Completed in ${diffDays} days`;
+      const completeTimeBtn = createButton(
+        "complete-time",
+        completedText,
+        "Time to complete the task"
+      );
+
+      task.completeTime = diffDays;
+      toolbar.append(completeTimeBtn);
+      saveAndDoneButton.removeEventListener(CLICK_EVENT, onTodoDone);
+    }
+
+    function getTaskCompletedDays(time) {
+      const now = Date.now();
+      const diffTime = now - time;
+      const diffHours = diffTime / (1000 * 60 * 60);
+      return Math.ceil(diffHours / 24);
     }
 
     function revertEvent() {
       inputElement.innerText = prevContent;
-      commonEvent();
+      inputElement.contentEditable = false;
       tasks[id].content = inputElement.textContent;
-      toggleButtons(editButton);
-      // editButton.classList.remove(HIDE_CLASS);
+      toggleButtons(
+        editButton,
+        deleteButton,
+        revertButton,
+        saveButton,
+        doneButton,
+        saveAndDoneButton
+      );
       revertButton.removeEventListener(CLICK_EVENT, revertEvent);
     }
 
     saveButton.addEventListener(CLICK_EVENT, saveEvent);
-    doneButton.addEventListener(CLICK_EVENT, onTodoDone);
+    saveAndDoneButton.addEventListener(CLICK_EVENT, onTodoDone);
     revertButton.addEventListener(CLICK_EVENT, revertEvent);
   }
 

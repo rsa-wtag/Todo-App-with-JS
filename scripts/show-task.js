@@ -1,5 +1,6 @@
 import { HIDE_CLASS, icons } from "/scripts/constants.js";
 import createButton from "/scripts/factory/createButton.js";
+import toggleButtons from "/scripts/factory/toggleButton.js";
 import onDeleteTask from "/scripts/delete-task.js";
 import onTaskComplete from "/scripts/done-task.js";
 import onTaskEdit from "/scripts/edit-task.js";
@@ -23,7 +24,7 @@ function showTask(
   textElement.innerText = inputElement.value;
   textElement.contentEditable = false;
 
-  task_content.appendChild(textElement);
+  task_content.append(textElement);
 
   const toolbar = document.createElement("div");
   toolbar.classList.add("actions");
@@ -44,6 +45,12 @@ function showTask(
     icons["DELETE_ICON"],
     "Delete task"
   );
+  const saveAndDoneButton = createButton(
+    HIDE_CLASS,
+    icons["DONE_ICON"],
+    "Save task and mark as done"
+  );
+
   const revertButton = createButton(
     HIDE_CLASS,
     icons["REVERT_ICON"],
@@ -56,11 +63,12 @@ function showTask(
     doneButton,
     editButton,
     deleteButton,
+    saveAndDoneButton,
     revertButton
   );
 
-  task_content.appendChild(toolbar);
-  task.appendChild(task_content);
+  task_content.append(toolbar);
+  task.append(task_content);
   taskListElement.prepend(task);
   onDeleteTask(deleteButton, task, taskListElement, tasks, id);
   onTaskComplete(doneButton, editButton, textElement, toolbar, tasks, id);
@@ -68,6 +76,7 @@ function showTask(
     doneButton,
     editButton,
     deleteButton,
+    saveAndDoneButton,
     revertButton,
     saveButton,
     textElement,
@@ -76,7 +85,7 @@ function showTask(
     id
   );
   inputElement.value = null;
-  form.classList.add(HIDE_CLASS);
+  toggleButtons(form);
 }
 
 export default showTask;

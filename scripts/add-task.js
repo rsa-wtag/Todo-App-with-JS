@@ -1,5 +1,6 @@
 import { CLICK_EVENT, HIDE_CLASS } from "/scripts/constants.js";
 import showTask from "/scripts/show-task.js";
+import toggleButtons from "/scripts/factory/toggleButton.js";
 
 function addTask(
   createButton,
@@ -11,14 +12,14 @@ function addTask(
   taskListElement
 ) {
   createButton.addEventListener(CLICK_EVENT, () => {
-    if (form.className == HIDE_CLASS) {
-      form.classList.remove(HIDE_CLASS);
+    if (form.classList.contains(HIDE_CLASS)) {
+      toggleButtons(form);
+      inputElement.focus();
     }
-    inputElement.focus();
   });
 
   cancelButton.addEventListener(CLICK_EVENT, () => {
-    form.classList.add(HIDE_CLASS);
+    toggleButtons(form);
     inputElement.value = null;
   });
 
@@ -38,7 +39,7 @@ function addTask(
       content: inputElement.value,
       date: currentDate,
       done: false,
-      compleTime: 0,
+      completeTime: 0,
     };
 
     tasks[id] = taskObject;

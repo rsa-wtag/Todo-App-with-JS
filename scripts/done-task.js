@@ -1,5 +1,6 @@
 import { CLICK_EVENT, HIDE_CLASS } from "/scripts/constants.js";
 import createButton from "/scripts/factory/createButton.js";
+import toggleButtons from "/scripts/factory/toggleButton.js";
 
 function onTaskComplete(
   doneButton,
@@ -21,9 +22,11 @@ function onTaskComplete(
   function doneTask() {
     inputElement.classList.add("done");
     const task = tasks[id];
-    task.doneButton = true;
-    doneButton.classList.add(HIDE_CLASS);
-    editButton.classList.add(HIDE_CLASS);
+    task.done = true;
+    toggleButtons(doneButton);
+    if (!editButton.classList.contains(HIDE_CLASS)) {
+      toggleButtons(editButton);
+    }
     const diffDays = getTaskCompletedDays(task.date.getTime());
 
     const completedText =
@@ -35,7 +38,7 @@ function onTaskComplete(
     );
 
     task.completeTime = diffDays;
-    toolbar.appendChild(completeTimeBtn);
+    toolbar.append(completeTimeBtn);
     doneButton.removeEventListener(CLICK_EVENT, doneTask);
   }
 }
