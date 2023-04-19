@@ -39,18 +39,23 @@ function onTaskEdit(
         saveAndDoneButton
       );
       saveButton.removeEventListener(CLICK_EVENT, saveEvent);
+      revertButton.removeEventListener(CLICK_EVENT, revertEvent);
+      saveAndDoneButton.removeEventListener(CLICK_EVENT, onTodoDone);
     }
 
     function onTodoDone() {
+      inputElement.contentEditable = false;
       inputElement.classList.add("done");
       const task = tasks[id];
       task.done = true;
-      toggleButtons(saveAndDoneButton);
-      if (!editButton.classList.contains(HIDE_CLASS)) {
-        toggleButtons(editButton);
-      }
-      const diffDays = getTaskCompletedDays(task.date.getTime());
+      task.content = inputElement.textContent;
 
+      editButton.removeEventListener(CLICK_EVENT, onEditButtonClick);
+      doneButton.removeEventListener(CLICK_EVENT, onTodoDone);
+
+      toggleButtons(saveAndDoneButton, saveButton, revertButton, deleteButton);
+
+      const diffDays = getTaskCompletedDays(task.date.getTime());
       const completedText =
         diffDays === 1 ? `Completed in 1 day` : `Completed in ${diffDays} days`;
       const completeTimeBtn = createButton(
@@ -58,9 +63,11 @@ function onTaskEdit(
         completedText,
         "Time to complete the task"
       );
-
       task.completeTime = diffDays;
       toolbar.append(completeTimeBtn);
+
+      saveButton.removeEventListener(CLICK_EVENT, saveEvent);
+      revertButton.removeEventListener(CLICK_EVENT, revertEvent);
       saveAndDoneButton.removeEventListener(CLICK_EVENT, onTodoDone);
     }
 
@@ -83,7 +90,9 @@ function onTaskEdit(
         doneButton,
         saveAndDoneButton
       );
+      saveButton.removeEventListener(CLICK_EVENT, saveEvent);
       revertButton.removeEventListener(CLICK_EVENT, revertEvent);
+      saveAndDoneButton.removeEventListener(CLICK_EVENT, onTodoDone);
     }
 
     saveButton.addEventListener(CLICK_EVENT, saveEvent);
