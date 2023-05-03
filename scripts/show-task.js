@@ -1,20 +1,28 @@
 import { HIDE_CLASS, icons } from "/scripts/constants.js";
 import createButton from "/scripts/factory/createButton.js";
 import onDeleteTask from "/scripts/delete-task.js";
+import onTaskComplete from "/scripts/done-task.js";
 
-function showTask(inputValue, formattedDate, taskListElement, form, tasks, id) {
+function showTask(
+  inputElement,
+  formattedDate,
+  taskListElement,
+  form,
+  tasks,
+  id
+) {
   const task = document.createElement("div");
   task.classList.add("task");
 
   const task_content = document.createElement("div");
   task_content.classList.add("content");
 
-  const inputElement = document.createElement("p");
-  inputElement.classList.add("text");
-  inputElement.innerText = inputValue.value;
-  inputElement.contentEditable = false;
+  const textElement = document.createElement("p");
+  textElement.classList.add("text");
+  textElement.innerText = inputElement.value;
+  textElement.contentEditable = false;
 
-  task_content.appendChild(inputElement);
+  task_content.appendChild(textElement);
 
   const toolbar = document.createElement("div");
   toolbar.classList.add("actions");
@@ -40,8 +48,8 @@ function showTask(inputValue, formattedDate, taskListElement, form, tasks, id) {
   task.appendChild(task_content);
   taskListElement.prepend(task);
   onDeleteTask(deleteButton, task, taskListElement, tasks, id);
-
-  inputValue.value = null;
+  onTaskComplete(doneButton, editButton, textElement, toolbar, tasks, id);
+  inputElement.value = null;
   form.classList.add(HIDE_CLASS);
 }
 
