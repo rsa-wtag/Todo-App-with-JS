@@ -11,7 +11,10 @@ function saveEvent(
   saveButton,
   inputElement,
   tasks,
-  id
+  id,
+  saveEventHandler,
+  saveAndDoneEventHandler,
+  revertEventHandler
 ) {
   inputElement.contentEditable = false;
   tasks[id].content = inputElement.textContent;
@@ -24,9 +27,9 @@ function saveEvent(
     saveAndDoneButton
   );
   console.log("call");
-  saveButton.removeEventListener(CLICK_EVENT, saveEvent);
-  revertButton.removeEventListener(CLICK_EVENT,  revertEvent);
-  saveAndDoneButton.removeEventListener(CLICK_EVENT, onTodoDone);
+  saveButton.removeEventListener(CLICK_EVENT, saveEventHandler);
+  revertButton.removeEventListener(CLICK_EVENT, revertEventHandler);
+  saveAndDoneButton.removeEventListener(CLICK_EVENT, saveAndDoneEventHandler);
 }
 
 function onTodoDone(
@@ -39,7 +42,11 @@ function onTodoDone(
   inputElement,
   toolbar,
   tasks,
-  id
+  id,
+  editEventHandler,
+  saveEventHandler,
+  saveAndDoneEventHandler,
+  revertEventHandler
 ) {
   inputElement.contentEditable = false;
   inputElement.classList.add("done");
@@ -47,8 +54,8 @@ function onTodoDone(
   task.done = true;
   task.content = inputElement.textContent;
 
-  editButton.removeEventListener(CLICK_EVENT, onEditButtonClick);
-  doneButton.removeEventListener(CLICK_EVENT, onTodoDone);
+  editButton.removeEventListener(CLICK_EVENT, editEventHandler);
+  // doneButton.removeEventListener(CLICK_EVENT, onTodoDone);
 
   toggleButtons(saveAndDoneButton, saveButton, revertButton, deleteButton);
 
@@ -63,9 +70,9 @@ function onTodoDone(
   task.completeTime = diffDays;
   toolbar.append(completeTimeBtn);
 
-  saveButton.removeEventListener(CLICK_EVENT, saveEvent);
-  revertButton.removeEventListener(CLICK_EVENT, revertEvent);
-  saveAndDoneButton.removeEventListener(CLICK_EVENT, onTodoDone);
+  saveButton.removeEventListener(CLICK_EVENT, saveEventHandler);
+  revertButton.removeEventListener(CLICK_EVENT, revertEventHandler);
+  saveAndDoneButton.removeEventListener(CLICK_EVENT, saveAndDoneEventHandler);
 }
 
 function revertEvent(
@@ -78,7 +85,10 @@ function revertEvent(
   inputElement,
   tasks,
   id,
-  prevContent
+  prevContent,
+  saveEventHandler,
+  saveAndDoneEventHandler,
+  revertEventHandler
 ) {
   inputElement.innerText = prevContent;
   inputElement.contentEditable = false;
@@ -91,9 +101,9 @@ function revertEvent(
     doneButton,
     saveAndDoneButton
   );
-  saveButton.removeEventListener(CLICK_EVENT, saveEvent);
-  revertButton.removeEventListener(CLICK_EVENT, revertEvent);
-  saveAndDoneButton.removeEventListener(CLICK_EVENT, onTodoDone);
+  saveButton.removeEventListener(CLICK_EVENT, saveEventHandler);
+  revertButton.removeEventListener(CLICK_EVENT, revertEventHandler);
+  saveAndDoneButton.removeEventListener(CLICK_EVENT, saveAndDoneEventHandler);
 }
 
 function getTaskCompletedDays(time) {
@@ -113,7 +123,8 @@ function onEditButtonClick(
   inputElement,
   toolbar,
   tasks,
-  id
+  id,
+  editEventHandler
 ) {
   const prevContent = inputElement.innerText;
   inputElement.contentEditable = true;
@@ -127,7 +138,7 @@ function onEditButtonClick(
     doneButton
   );
 
-  saveButton.addEventListener(CLICK_EVENT, () =>
+  function saveEventHandler() {
     saveEvent(
       doneButton,
       editButton,
@@ -137,10 +148,14 @@ function onEditButtonClick(
       saveButton,
       inputElement,
       tasks,
-      id
-    )
-  );
-  saveAndDoneButton.addEventListener(CLICK_EVENT, () =>
+      id,
+      saveEventHandler,
+      saveAndDoneEventHandler,
+      revertEventHandler
+    );
+  }
+
+  function saveAndDoneEventHandler() {
     onTodoDone(
       doneButton,
       editButton,
@@ -151,10 +166,15 @@ function onEditButtonClick(
       inputElement,
       toolbar,
       tasks,
-      id
-    )
-  );
-  revertButton.addEventListener(CLICK_EVENT, () =>
+      id,
+      editEventHandler,
+      saveEventHandler,
+      saveAndDoneEventHandler,
+      revertEventHandler
+    );
+  }
+
+  function revertEventHandler() {
     revertEvent(
       doneButton,
       editButton,
@@ -165,9 +185,16 @@ function onEditButtonClick(
       inputElement,
       tasks,
       id,
-      prevContent
-    )
-  );
+      prevContent,
+      saveEventHandler,
+      saveAndDoneEventHandler,
+      revertEventHandler
+    );
+  }
+
+  saveButton.addEventListener(CLICK_EVENT, saveEventHandler);
+  saveAndDoneButton.addEventListener(CLICK_EVENT, saveAndDoneEventHandler);
+  revertButton.addEventListener(CLICK_EVENT, revertEventHandler);
 }
 
 function onTaskEdit(
@@ -182,7 +209,7 @@ function onTaskEdit(
   tasks,
   id
 ) {
-  editButton.addEventListener(CLICK_EVENT, () =>
+  function editEventHandler() {
     onEditButtonClick(
       doneButton,
       editButton,
@@ -193,9 +220,12 @@ function onTaskEdit(
       inputElement,
       toolbar,
       tasks,
-      id
-    )
-  );
+      id,
+      editEventHandler
+    );
+  }
+
+  editButton.addEventListener(CLICK_EVENT, editEventHandler);
 }
 
 export default onTaskEdit;
