@@ -13,9 +13,9 @@ function onTaskComplete(
   doneButton.addEventListener(CLICK_EVENT, doneTask);
 
   function doneTask() {
-    inputElement.classList.add("done");
     const task = tasks[id];
     task.doneButton = true;
+    inputElement.classList.add("done");
     doneButton.classList.add(HIDE_CLASS);
     editButton.classList.add(HIDE_CLASS);
     const diffDays = getTaskCompletedDays(task.date.getTime());
