@@ -26,7 +26,6 @@ function saveEvent(
     doneButton,
     saveAndDoneButton
   );
-  console.log("call");
   saveButton.removeEventListener(CLICK_EVENT, saveEventHandler);
   revertButton.removeEventListener(CLICK_EVENT, revertEventHandler);
   saveAndDoneButton.removeEventListener(CLICK_EVENT, saveAndDoneEventHandler);
