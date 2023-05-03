@@ -1,6 +1,6 @@
 import { CLICK_EVENT, HIDE_CLASS } from "/scripts/constants.js";
 import createButton from "/scripts/factory/createButton.js";
-import toggleButtons from "/scripts/factory/toggleButton.js";
+import toggleButton from "/scripts/factory/toggleButton.js";
 
 function saveEvent(
   doneButton,
@@ -18,7 +18,7 @@ function saveEvent(
 ) {
   inputElement.contentEditable = false;
   tasks[id].content = inputElement.textContent;
-  toggleButtons(
+  toggleButton(
     editButton,
     deleteButton,
     revertButton,
@@ -56,7 +56,7 @@ function onTodoDone(
   editButton.removeEventListener(CLICK_EVENT, editEventHandler);
   // doneButton.removeEventListener(CLICK_EVENT, onTodoDone);
 
-  toggleButtons(saveAndDoneButton, saveButton, revertButton, deleteButton);
+  toggleButton(saveAndDoneButton, saveButton, revertButton, deleteButton);
 
   const diffDays = getTaskCompletedDays(task.date.getTime());
   const completedText =
@@ -92,7 +92,7 @@ function revertEvent(
   inputElement.innerText = prevContent;
   inputElement.contentEditable = false;
   tasks[id].content = inputElement.textContent;
-  toggleButtons(
+  toggleButton(
     editButton,
     deleteButton,
     revertButton,
@@ -128,7 +128,7 @@ function onEditButtonClick(
   const prevContent = inputElement.innerText;
   inputElement.contentEditable = true;
   inputElement.focus();
-  toggleButtons(
+  toggleButton(
     editButton,
     deleteButton,
     revertButton,

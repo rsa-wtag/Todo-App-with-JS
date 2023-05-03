@@ -1,7 +1,7 @@
 import { CLICK_EVENT, HIDE_CLASS } from "/scripts/constants.js";
 import createButton from "/scripts/factory/createButton.js";
 import getTaskCompletedDays from "/scripts/factory/timeToComplete.js";
-import toggleButtons from "/scripts/factory/toggleButton.js";
+import toggleButton from "/scripts/factory/toggleButton.js";
 
 function onTaskComplete(
   doneButton,
@@ -16,9 +16,9 @@ function onTaskComplete(
   function doneTask() {
     const task = tasks[id];
     task.done = true;
-    toggleButtons(doneButton);
+    toggleButton(doneButton);
     if (!editButton.classList.contains(HIDE_CLASS)) {
-      toggleButtons(editButton);
+      toggleButton(editButton);
     }
     const diffDays = getTaskCompletedDays(task.date.getTime());
 

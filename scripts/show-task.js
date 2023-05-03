@@ -1,6 +1,6 @@
 import { HIDE_CLASS, icons } from "/scripts/constants.js";
 import createButton from "/scripts/factory/createButton.js";
-import toggleButtons from "/scripts/factory/toggleButton.js";
+import toggleButton from "/scripts/factory/toggleButton.js";
 import onDeleteTask from "/scripts/delete-task.js";
 import onTaskComplete from "/scripts/done-task.js";
 import onTaskEdit from "/scripts/edit-task.js";
@@ -85,7 +85,7 @@ function showTask(
     id
   );
   inputElement.value = null;
-  toggleButtons(form);
+  toggleButton(form);
 }
 
 export default showTask;
