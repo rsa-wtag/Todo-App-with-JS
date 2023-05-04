@@ -57,28 +57,29 @@ function showTask(
     "Revert to previous task"
   );
 
-  toolbar.append(
-    date,
+  const buttons = [
     saveButton,
     doneButton,
     editButton,
     deleteButton,
     saveAndDoneButton,
-    revertButton
-  );
+    revertButton,
+  ];
 
+  toolbar.append(date, ...buttons);
   task_content.append(toolbar);
   task.append(task_content);
   taskListElement.prepend(task);
   onDeleteTask(deleteButton, task, taskListElement, tasks, id);
   onTaskComplete(doneButton, editButton, textElement, toolbar, tasks, id);
   onTaskEdit(
-    doneButton,
-    editButton,
-    deleteButton,
-    saveAndDoneButton,
-    revertButton,
-    saveButton,
+    buttons,
+    // doneButton,
+    // editButton,
+    // deleteButton,
+    // saveAndDoneButton,
+    // revertButton,
+    // saveButton,
     textElement,
     toolbar,
     tasks,

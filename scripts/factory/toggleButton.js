@@ -10,4 +10,4 @@ function toggleButton(...buttons) {
   });
 }
 
-export default toggleButtons;
+export default toggleButton;

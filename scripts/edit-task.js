@@ -3,12 +3,7 @@ import createButton from "/scripts/factory/createButton.js";
 import toggleButton from "/scripts/factory/toggleButton.js";
 
 function saveEvent(
-  doneButton,
-  editButton,
-  deleteButton,
-  saveAndDoneButton,
-  revertButton,
-  saveButton,
+  buttons,
   inputElement,
   tasks,
   id,
@@ -18,26 +13,15 @@ function saveEvent(
 ) {
   inputElement.contentEditable = false;
   tasks[id].content = inputElement.textContent;
-  toggleButton(
-    editButton,
-    deleteButton,
-    revertButton,
-    saveButton,
-    doneButton,
-    saveAndDoneButton
-  );
+  toggleButton(...buttons);
+  const [saveButton, , , , saveAndDoneButton, revertButton] = buttons;
   saveButton.removeEventListener(CLICK_EVENT, saveEventHandler);
   revertButton.removeEventListener(CLICK_EVENT, revertEventHandler);
   saveAndDoneButton.removeEventListener(CLICK_EVENT, saveAndDoneEventHandler);
 }
 
 function onTodoDone(
-  doneButton,
-  editButton,
-  deleteButton,
-  saveAndDoneButton,
-  revertButton,
-  saveButton,
+  buttons,
   inputElement,
   toolbar,
   tasks,
@@ -52,10 +36,15 @@ function onTodoDone(
   const task = tasks[id];
   task.done = true;
   task.content = inputElement.textContent;
-
+  const [
+    saveButton,
+    ,
+    editButton,
+    deleteButton,
+    saveAndDoneButton,
+    revertButton,
+  ] = buttons;
   editButton.removeEventListener(CLICK_EVENT, editEventHandler);
-  // doneButton.removeEventListener(CLICK_EVENT, onTodoDone);
-
   toggleButton(saveAndDoneButton, saveButton, revertButton, deleteButton);
 
   const diffDays = getTaskCompletedDays(task.date.getTime());
@@ -75,12 +64,7 @@ function onTodoDone(
 }
 
 function revertEvent(
-  doneButton,
-  editButton,
-  deleteButton,
-  saveAndDoneButton,
-  revertButton,
-  saveButton,
+  buttons,
   inputElement,
   tasks,
   id,
@@ -92,14 +76,9 @@ function revertEvent(
   inputElement.innerText = prevContent;
   inputElement.contentEditable = false;
   tasks[id].content = inputElement.textContent;
-  toggleButton(
-    editButton,
-    deleteButton,
-    revertButton,
-    saveButton,
-    doneButton,
-    saveAndDoneButton
-  );
+  toggleButton(...buttons);
+  const [saveButton, , , , saveAndDoneButton, revertButton] = buttons;
+
   saveButton.removeEventListener(CLICK_EVENT, saveEventHandler);
   revertButton.removeEventListener(CLICK_EVENT, revertEventHandler);
   saveAndDoneButton.removeEventListener(CLICK_EVENT, saveAndDoneEventHandler);
@@ -113,12 +92,7 @@ function getTaskCompletedDays(time) {
 }
 
 function onEditButtonClick(
-  doneButton,
-  editButton,
-  deleteButton,
-  saveAndDoneButton,
-  revertButton,
-  saveButton,
+  buttons,
   inputElement,
   toolbar,
   tasks,
@@ -128,23 +102,11 @@ function onEditButtonClick(
   const prevContent = inputElement.innerText;
   inputElement.contentEditable = true;
   inputElement.focus();
-  toggleButton(
-    editButton,
-    deleteButton,
-    revertButton,
-    saveButton,
-    saveAndDoneButton,
-    doneButton
-  );
+  toggleButton(...buttons);
 
   function saveEventHandler() {
     saveEvent(
-      doneButton,
-      editButton,
-      deleteButton,
-      saveAndDoneButton,
-      revertButton,
-      saveButton,
+      buttons,
       inputElement,
       tasks,
       id,
@@ -156,12 +118,7 @@ function onEditButtonClick(
 
   function saveAndDoneEventHandler() {
     onTodoDone(
-      doneButton,
-      editButton,
-      deleteButton,
-      saveAndDoneButton,
-      revertButton,
-      saveButton,
+      buttons,
       inputElement,
       toolbar,
       tasks,
@@ -175,12 +132,7 @@ function onEditButtonClick(
 
   function revertEventHandler() {
     revertEvent(
-      doneButton,
-      editButton,
-      deleteButton,
-      saveAndDoneButton,
-      revertButton,
-      saveButton,
+      buttons,
       inputElement,
       tasks,
       id,
@@ -191,31 +143,16 @@ function onEditButtonClick(
     );
   }
 
+  const [saveButton, , , , saveAndDoneButton, revertButton] = buttons;
   saveButton.addEventListener(CLICK_EVENT, saveEventHandler);
   saveAndDoneButton.addEventListener(CLICK_EVENT, saveAndDoneEventHandler);
   revertButton.addEventListener(CLICK_EVENT, revertEventHandler);
 }
 
-function onTaskEdit(
-  doneButton,
-  editButton,
-  deleteButton,
-  saveAndDoneButton,
-  revertButton,
-  saveButton,
-  inputElement,
-  toolbar,
-  tasks,
-  id
-) {
+function onTaskEdit(buttons, inputElement, toolbar, tasks, id) {
   function editEventHandler() {
     onEditButtonClick(
-      doneButton,
-      editButton,
-      deleteButton,
-      saveAndDoneButton,
-      revertButton,
-      saveButton,
+      buttons,
       inputElement,
       toolbar,
       tasks,
@@ -223,7 +160,7 @@ function onTaskEdit(
       editEventHandler
     );
   }
-
+  const editButton = buttons[2];
   editButton.addEventListener(CLICK_EVENT, editEventHandler);
 }
 
