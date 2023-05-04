@@ -4,6 +4,7 @@ import toggleButton from "/scripts/factory/toggleButton.js";
 import onDeleteTask from "/scripts/delete-task.js";
 import onTaskComplete from "/scripts/done-task.js";
 import onTaskEdit from "/scripts/edit-task.js";
+import disableEditing from "/scripts/factory/disableEditing.js";
 
 function showTask(
   inputElement,
@@ -22,7 +23,7 @@ function showTask(
   const textElement = document.createElement("p");
   textElement.classList.add("text");
   textElement.innerText = inputElement.value;
-  textElement.contentEditable = false;
+  disableEditing(inputElement);
 
   task_content.append(textElement);
 

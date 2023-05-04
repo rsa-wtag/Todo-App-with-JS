@@ -1,6 +1,7 @@
 import { CLICK_EVENT, HIDE_CLASS } from "/scripts/constants.js";
 import createButton from "/scripts/factory/createButton.js";
 import toggleButton from "/scripts/factory/toggleButton.js";
+import disableEditing from "/scripts/factory/disableEditing.js";
 
 function saveEvent(
   buttons,
@@ -11,7 +12,7 @@ function saveEvent(
   saveAndDoneEventHandler,
   revertEventHandler
 ) {
-  inputElement.contentEditable = false;
+  disableEditing(inputElement);
   tasks[id].content = inputElement.textContent;
   toggleButton(...buttons);
   const [saveButton, , , , saveAndDoneButton, revertButton] = buttons;
@@ -31,7 +32,7 @@ function onTodoDone(
   saveAndDoneEventHandler,
   revertEventHandler
 ) {
-  inputElement.contentEditable = false;
+  disableEditing(inputElement);
   inputElement.classList.add("done");
   const task = tasks[id];
   task.done = true;
@@ -74,7 +75,7 @@ function revertEvent(
   revertEventHandler
 ) {
   inputElement.innerText = prevContent;
-  inputElement.contentEditable = false;
+  disableEditing(inputElement);
   tasks[id].content = inputElement.textContent;
   toggleButton(...buttons);
   const [saveButton, , , , saveAndDoneButton, revertButton] = buttons;
