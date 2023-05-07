@@ -21,6 +21,7 @@ function onTaskComplete(
       toggleButton(editButton);
     }
     const diffDays = getTaskCompletedDays(task.date.getTime());
+    inputElement.classList.add("done");
 
     const completedText =
       diffDays === 1 ? `Completed in 1 day` : `Completed in ${diffDays} days`;

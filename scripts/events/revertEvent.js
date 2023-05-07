@@ -14,7 +14,6 @@ function revertEvent(
 ) {
   inputElement.innerText = prevContent;
   disableEditing(inputElement);
-  tasks[id].content = inputElement.textContent;
   toggleButton(...buttons);
   removeEventListeners(
     buttons,
