@@ -73,19 +73,7 @@ function showTask(
   taskListElement.prepend(task);
   onDeleteTask(deleteButton, task, taskListElement, tasks, id);
   onTaskComplete(doneButton, editButton, textElement, toolbar, tasks, id);
-  onTaskEdit(
-    buttons,
-    // doneButton,
-    // editButton,
-    // deleteButton,
-    // saveAndDoneButton,
-    // revertButton,
-    // saveButton,
-    textElement,
-    toolbar,
-    tasks,
-    id
-  );
+  onTaskEdit(buttons, textElement, toolbar, tasks, id);
   inputElement.value = null;
   toggleButton(form);
 }
