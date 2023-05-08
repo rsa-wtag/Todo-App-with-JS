@@ -8,19 +8,12 @@ function revertEvent(
   tasks,
   id,
   prevContent,
-  saveEventHandler,
-  saveAndDoneEventHandler,
-  revertEventHandler
+  eventHandlers
 ) {
   inputElement.innerText = prevContent;
-  disableEditing(inputElement);
+  disableEditing(inputElement, false);
   toggleButton(...buttons);
-  removeEventListeners(
-    buttons,
-    saveEventHandler,
-    saveAndDoneEventHandler,
-    revertEventHandler
-  );
+  removeEventListeners(buttons, ...eventHandlers);
 }
 
 export default revertEvent;

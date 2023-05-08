@@ -23,7 +23,7 @@ function showTask(
   const textElement = document.createElement("p");
   textElement.classList.add("text");
   textElement.innerText = inputElement.value;
-  disableEditing(inputElement);
+  disableEditing(inputElement, false);
 
   task_content.append(textElement);
 

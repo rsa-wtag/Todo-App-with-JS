@@ -1,4 +1,4 @@
-const disableEditing = (element, disabled = false) => {
+const disableEditing = (element, disabled = true) => {
   element.contentEditable = disabled;
 };
 

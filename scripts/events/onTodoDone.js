@@ -12,11 +12,9 @@ function onTodoDone(
   tasks,
   id,
   editEventHandler,
-  saveEventHandler,
-  saveAndDoneEventHandler,
-  revertEventHandler
+  eventHandlers
 ) {
-  disableEditing(inputElement);
+  disableEditing(inputElement, false);
   inputElement.classList.add("done");
   const task = tasks[id];
   task.done = true;
@@ -42,12 +40,7 @@ function onTodoDone(
   );
   task.completeTime = diffDays;
   toolbar.append(completeTimeBtn);
-  removeEventListeners(
-    buttons,
-    saveEventHandler,
-    saveAndDoneEventHandler,
-    revertEventHandler
-  );
+  removeEventListeners(buttons, ...eventHandlers);
 }
 
 export default onTodoDone;
