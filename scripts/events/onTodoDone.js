@@ -38,7 +38,6 @@ function onTodoDone(
     completedText,
     "Time to complete the task"
   );
-  task.completeTime = diffDays;
   toolbar.append(completeTimeBtn);
   removeEventListeners(buttons, ...eventHandlers);
 }

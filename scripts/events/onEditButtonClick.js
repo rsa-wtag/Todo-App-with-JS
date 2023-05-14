@@ -13,7 +13,6 @@ function onEditButtonClick(
   id,
   editEventHandler
 ) {
-  const prevContent = inputElement.innerText;
   disableEditing(inputElement);
   inputElement.focus();
   toggleButton(...buttons);
@@ -39,6 +38,7 @@ function onEditButtonClick(
   }
 
   const [saveButton, , , , saveAndDoneButton, revertButton] = buttons;
+  const prevContent = inputElement.innerText;
   const eventHandlers = [
     saveEventHandler,
     saveAndDoneEventHandler,

@@ -16,10 +16,7 @@ function onTaskComplete(
   function doneTask() {
     const task = tasks[id];
     task.done = true;
-    toggleButton(doneButton);
-    if (!editButton.classList.contains(HIDE_CLASS)) {
-      toggleButton(editButton);
-    }
+    toggleButton(doneButton, editButton);
     const diffDays = getTaskCompletedDays(task.date.getTime());
     inputElement.classList.add("done");
 
@@ -30,8 +27,6 @@ function onTaskComplete(
       completedText,
       "Time to complete the task"
     );
-
-    task.completeTime = diffDays;
     toolbar.append(completeTimeBtn);
     doneButton.removeEventListener(CLICK_EVENT, doneTask);
   }

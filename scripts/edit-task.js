@@ -1,5 +1,5 @@
 import { CLICK_EVENT } from "/scripts/constants.js";
-import onEditButtonClick from "/scripts//events/onEditButtonClick.js";
+import onEditButtonClick from "/scripts/events/onEditButtonClick.js";
 
 function onTaskEdit(buttons, inputElement, toolbar, tasks, id) {
   function editEventHandler() {

@@ -1,4 +1,10 @@
-import { HIDE_CLASS, icons } from "/scripts/constants.js";
+import {
+  HIDE_CLASS,
+  EDIT_ICON,
+  DELETE_ICON,
+  DONE_ICON,
+  REVERT_ICON,
+} from "/scripts/constants.js";
 import createButton from "/scripts/factory/createButton.js";
 import toggleButton from "/scripts/factory/toggleButton.js";
 import onDeleteTask from "/scripts/delete-task.js";
@@ -37,24 +43,24 @@ function showTask(
   const saveButton = createButton(HIDE_CLASS, "Save", "Save the task");
   const doneButton = createButton(
     "done",
-    icons["DONE_ICON"],
+    DONE_ICON,
     "Mark task as done"
   );
-  const editButton = createButton("edit", icons["EDIT_ICON"], "Edit task");
+  const editButton = createButton("edit", EDIT_ICON, "Edit task");
   const deleteButton = createButton(
     "delete",
-    icons["DELETE_ICON"],
+    DELETE_ICON,
     "Delete task"
   );
   const saveAndDoneButton = createButton(
     HIDE_CLASS,
-    icons["DONE_ICON"],
+    DONE_ICON,
     "Save task and mark as done"
   );
 
   const revertButton = createButton(
     HIDE_CLASS,
-    icons["REVERT_ICON"],
+    REVERT_ICON,
     "Revert to previous task"
   );
 

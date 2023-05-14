@@ -11,17 +11,21 @@ function addTask(
   id,
   taskListElement
 ) {
-  createButton.addEventListener(CLICK_EVENT, () => {
+  function createEventHandler() {
     if (form.classList.contains(HIDE_CLASS)) {
       toggleButton(form);
       inputElement.focus();
     }
-  });
+  }
 
-  cancelButton.addEventListener(CLICK_EVENT, () => {
+  function cancelEventHandler() {
     toggleButton(form);
     inputElement.value = null;
-  });
+  }
+
+  createButton.addEventListener(CLICK_EVENT, createEventHandler);
+
+  cancelButton.addEventListener(CLICK_EVENT, cancelEventHandler);
 
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -39,7 +43,6 @@ function addTask(
       content: inputElement.value,
       date: currentDate,
       done: false,
-      completeTime: 0,
     };
 
     tasks[id] = taskObject;
