@@ -17,6 +17,12 @@ function onEditButtonClick(
   inputElement.focus();
   toggleButton(...buttons);
 
+  const eventHandlers = [
+    saveEventHandler,
+    saveAndDoneEventHandler,
+    revertEventHandler,
+  ];
+
   function saveEventHandler() {
     saveEvent(buttons, inputElement, tasks, id, eventHandlers);
   }
@@ -39,11 +45,6 @@ function onEditButtonClick(
 
   const [saveButton, , , , saveAndDoneButton, revertButton] = buttons;
   const prevContent = inputElement.innerText;
-  const eventHandlers = [
-    saveEventHandler,
-    saveAndDoneEventHandler,
-    revertEventHandler,
-  ];
 
   saveButton.addEventListener(CLICK_EVENT, saveEventHandler);
   saveAndDoneButton.addEventListener(CLICK_EVENT, saveAndDoneEventHandler);
