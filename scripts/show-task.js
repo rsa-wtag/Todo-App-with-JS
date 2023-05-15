@@ -1,56 +1,107 @@
-import { HIDE_CLASS, icons } from "/scripts/constants.js";
+import {
+  HIDE_CLASS,
+  EDIT_ICON,
+  DELETE_ICON,
+  DONE_ICON,
+  REVERT_ICON,
+} from "/scripts/constants.js";
 import createButton from "/scripts/factory/createButton.js";
+import toggleButton from "/scripts/factory/toggleButton.js";
 import onDeleteTask from "/scripts/delete-task.js";
 import onTaskComplete from "/scripts/done-task.js";
+import onTaskEdit from "/scripts/edit-task.js";
+import createTask from "/scripts/factory/createTask.js";
+import createToolbar from "/scripts/factory/createToolbar.js";
+import { CLICK_EVENT } from "/scripts/constants.js";
+import saveEvent from "/scripts/events/saveEvent.js";
+import onTodoDone from "/scripts/events/onTodoDone.js";
+import revertEvent from "/scripts/events/revertEvent.js";
 
-function showTask(
-  inputElement,
-  formattedDate,
-  taskListElement,
-  form,
-  tasks,
-  id
-) {
-  const task = document.createElement("div");
-  task.classList.add("task");
+function showTask(inputElement, formattedDate, form, tasks, id) {
+  const [task_content, task, textElement] = createTask(inputElement);
 
-  const task_content = document.createElement("div");
-  task_content.classList.add("content");
-
-  const textElement = document.createElement("p");
-  textElement.classList.add("text");
-  textElement.innerText = inputElement.value;
-  textElement.contentEditable = false;
-
-  task_content.appendChild(textElement);
-
-  const toolbar = document.createElement("div");
-  toolbar.classList.add("actions");
-
-  const date = document.createElement("p");
-  date.innerHTML = "Created At: " + formattedDate;
-
-  const DONE_ICON = icons["DONE"];
+  const date = document.createElement(
+    "p",
+    "Created At: " + formattedDate,
+    true
+  );
+  const saveButton = createButton(HIDE_CLASS, "Save", "Save the task");
   const doneButton = createButton("done", DONE_ICON, "Mark task as done");
-
-  const EDIT_ICON = icons["EDIT"];
   const editButton = createButton("edit", EDIT_ICON, "Edit task");
-
-  const DELETE_ICON = icons["DELETE"];
   const deleteButton = createButton("delete", DELETE_ICON, "Delete task");
+  const saveAndDoneButton = createButton(
+    HIDE_CLASS,
+    DONE_ICON,
+    "Save task and mark as done"
+  );
+  const revertButton = createButton(
+    HIDE_CLASS,
+    REVERT_ICON,
+    "Revert to previous task"
+  );
 
-  toolbar.appendChild(date);
-  toolbar.appendChild(doneButton);
-  toolbar.appendChild(editButton);
-  toolbar.appendChild(deleteButton);
+  const buttons = [
+    saveButton,
+    doneButton,
+    editButton,
+    deleteButton,
+    saveAndDoneButton,
+    revertButton,
+  ];
 
-  task_content.appendChild(toolbar);
-  task.appendChild(task_content);
+  const toolbar = createToolbar(date, buttons);
+  task_content.append(toolbar);
+  task.append(task_content);
+  const taskListElement = document.querySelector("#task-list");
   taskListElement.prepend(task);
-  onDeleteTask(deleteButton, task, taskListElement, tasks, id);
-  onTaskComplete(doneButton, editButton, textElement, toolbar, tasks, id);
+
+  function saveEventHandler() {
+    saveEvent(buttons, textElement, tasks, id);
+  }
+
+  function saveAndDoneEventHandler() {
+    onTodoDone(buttons, textElement, toolbar, tasks, id);
+  }
+
+  function revertEventHandler() {
+    revertEvent(buttons, textElement, tasks[id].content);
+  }
+
+  const doneTask = onTaskComplete(
+    doneButton,
+    editButton,
+    textElement,
+    toolbar,
+    tasks,
+    id
+  );
+  const editEventHandler = onTaskEdit(buttons, textElement);
+
+  const eventHandlers = [
+    doneTask,
+    editEventHandler,
+    saveEventHandler,
+    saveAndDoneEventHandler,
+    revertEventHandler,
+  ];
+  const deleteTask = onDeleteTask(
+    buttons,
+    task,
+    taskListElement,
+    tasks,
+    id,
+    eventHandlers
+  );
+
+  deleteButton.addEventListener(CLICK_EVENT, deleteTask);
+  doneButton.addEventListener(CLICK_EVENT, doneTask);
+  editButton.addEventListener(CLICK_EVENT, editEventHandler);
+  saveButton.addEventListener(CLICK_EVENT, saveEventHandler);
+  saveAndDoneButton.addEventListener(CLICK_EVENT, saveAndDoneEventHandler);
+  revertButton.addEventListener(CLICK_EVENT, revertEventHandler);
+
   inputElement.value = null;
-  form.classList.add(HIDE_CLASS);
+  toggleButton(form);
 }
 
 export default showTask;

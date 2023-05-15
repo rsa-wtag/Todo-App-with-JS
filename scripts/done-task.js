@@ -1,6 +1,7 @@
 import { CLICK_EVENT, HIDE_CLASS } from "/scripts/constants.js";
 import createButton from "/scripts/factory/createButton.js";
 import getTaskCompletedDays from "/scripts/factory/timeToComplete.js";
+import toggleButton from "/scripts/factory/toggleButton.js";
 
 function onTaskComplete(
   doneButton,
@@ -10,15 +11,12 @@ function onTaskComplete(
   tasks,
   id
 ) {
-  doneButton.addEventListener(CLICK_EVENT, doneTask);
-
   function doneTask() {
     const task = tasks[id];
-    task.doneButton = true;
-    inputElement.classList.add("done");
-    doneButton.classList.add(HIDE_CLASS);
-    editButton.classList.add(HIDE_CLASS);
+    task.done = true;
+    toggleButton(doneButton, editButton);
     const diffDays = getTaskCompletedDays(task.date.getTime());
+    inputElement.classList.add("done");
 
     const completedText =
       diffDays === 1 ? `Completed in 1 day` : `Completed in ${diffDays} days`;
@@ -27,11 +25,9 @@ function onTaskComplete(
       completedText,
       "Time to complete the task"
     );
-
-    task.completeTime = diffDays;
-    toolbar.appendChild(completeTimeBtn);
-    doneButton.removeEventListener(CLICK_EVENT, doneTask);
+    toolbar.append(completeTimeBtn);
   }
+  return doneTask;
 }
 
 export default onTaskComplete;
