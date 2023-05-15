@@ -2,15 +2,7 @@ import { CLICK_EVENT, HIDE_CLASS } from "/scripts/constants.js";
 import showTask from "/scripts/show-task.js";
 import toggleButton from "/scripts/factory/toggleButton.js";
 
-function addTask(
-  createButton,
-  cancelButton,
-  form,
-  inputElement,
-  tasks,
-  id,
-  taskListElement
-) {
+function addTask(createButton, cancelButton, form, inputElement, tasks, id) {
   function createEventHandler() {
     if (form.classList.contains(HIDE_CLASS)) {
       toggleButton(form);
@@ -24,9 +16,7 @@ function addTask(
   }
 
   createButton.addEventListener(CLICK_EVENT, createEventHandler);
-
   cancelButton.addEventListener(CLICK_EVENT, cancelEventHandler);
-
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     if (!inputElement.value) {
@@ -46,7 +36,7 @@ function addTask(
     };
 
     tasks[id] = taskObject;
-    showTask(inputElement, formattedDate, taskListElement, form, tasks, id);
+    showTask(inputElement, formattedDate, form, tasks, id);
     id++;
   });
 }

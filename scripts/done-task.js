@@ -11,8 +11,6 @@ function onTaskComplete(
   tasks,
   id
 ) {
-  doneButton.addEventListener(CLICK_EVENT, doneTask);
-
   function doneTask() {
     const task = tasks[id];
     task.done = true;
@@ -28,8 +26,8 @@ function onTaskComplete(
       "Time to complete the task"
     );
     toolbar.append(completeTimeBtn);
-    doneButton.removeEventListener(CLICK_EVENT, doneTask);
   }
+  return doneTask;
 }
 
 export default onTaskComplete;

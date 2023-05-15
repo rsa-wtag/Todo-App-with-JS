@@ -1,15 +1,28 @@
 import { CLICK_EVENT } from "/scripts/constants.js";
 
-function removeEventListeners(
-  buttons,
-  saveEventHandler,
-  saveAndDoneEventHandler,
-  revertEventHandler
-) {
-  const [saveButton, , , , saveAndDoneButton, revertButton] = buttons;
-  saveButton.removeEventListener(CLICK_EVENT, saveEventHandler);
-  saveAndDoneButton.removeEventListener(CLICK_EVENT, saveAndDoneEventHandler);
-  revertButton.removeEventListener(CLICK_EVENT, revertEventHandler);
+function removeEventListeners(buttons, EventHandlers) {
+  const [
+    saveButton,
+    doneButton,
+    editButton,
+    deleteButton,
+    saveAndDoneButton,
+    revertButton,
+  ] = buttons;
+
+  const [
+    doneTask,
+    editEventHandler,
+    saveEventHandler,
+    saveAndDoneEventHandler,
+    revertEventHandler,
+  ] = EventHandlers;
+
+  doneButton.removeEventListener(CLICK_EVENT, doneTask);
+  editButton.removeEventListener(CLICK_EVENT, editEventHandler);
+  saveButton.addEventListener(CLICK_EVENT, saveEventHandler);
+  saveAndDoneButton.addEventListener(CLICK_EVENT, saveAndDoneEventHandler);
+  revertButton.addEventListener(CLICK_EVENT, revertEventHandler);
 }
 
 export default removeEventListeners;
